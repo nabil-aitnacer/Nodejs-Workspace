@@ -125,15 +125,15 @@ function collision(_ball,_playerPaddle){
     _playerPaddle.right = _playerPaddle.x +paddle.width;
     return _ball.right()> _playerPaddle.left&&
             _ball.bottom()>_playerPaddle.top
-            && _ball.left()< _playerPaddle.right
-            && _ball.top()< _playerPaddle.bottom
+            && _ball.left()<= _playerPaddle.right
+            && _ball.top()<= _playerPaddle.bottom
 
 }
 //controle user paddle
 canvas.addEventListener('mousemove',movePaddle);
 function movePaddle(e){
     let rect =canvas.getBoundingClientRect();
-    user.y = e.clientY - rect.top - paddle.height/2
+    user.y = e.clientY - rect.top 
 }
 //update function 
 function update(){
