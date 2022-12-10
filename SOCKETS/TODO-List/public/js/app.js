@@ -8,7 +8,7 @@ const element_date = document.getElementById('date');
 const today = new Date();
 const dateOptions= {weekday:"long",month:"short",day:"numeric"};
 element_date.innerHTML = today.toLocaleDateString('en-US',dateOptions);
-
+const URL = 'http://localhost:8000'
 
 const CHECK = "fa-check-circle";
 const UNCHECK = "fa-circle-thin";
@@ -54,7 +54,7 @@ function addToDo(e){
   
     
 }
-function addItemTodo(_todo){
+async function addItemTodo(_todo){
 
     const item = `<li class="item">
     <i class="fa fa-circle-thin co" job="complete" id="${_todo.id}" onclick="complete(this)"></i>
@@ -63,6 +63,23 @@ function addItemTodo(_todo){
 </li> 
     `
     todoList.push(_todo)
+    console.log(JSON.stringify(_todo))
+    
+    const post =  await fetch(URL,{
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json',
+            
+        },
+        body:JSON.stringify(_todo),
+        
+    }).then((response)=>response.json())
+    .then((data)=>{
+        console.log(data)
+    }).catch((error)=>{
+        console.log(error)
+    })
+   
 
     element_list.insertAdjacentHTML('beforeend',item)
    
@@ -185,6 +202,10 @@ function loadDataFromLocal(){
 window.onload =()=>{
     inputTextValue.value =""
    loadDataFromLocal()
+}
+
+async function potTodo(_todo){
+   
 }
 
 
