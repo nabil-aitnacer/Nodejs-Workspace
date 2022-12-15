@@ -10,6 +10,7 @@ const BlogPost = require('./models/BlogPost')
 const fileUpload = require('express-fileupload');
 const { watch } = require('./models/BlogPost');
 
+const UserRouter = require('./routers/user.router')
 mongoose.connect(Mongo_db_Url,{useNewUrlParser: true})
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
@@ -35,13 +36,9 @@ app.get('/contact',(req,res)=>{
 })
 app.get('/post/:id',async (req,res)=>{
     const postId = req.params.id
-    console.log('post id '+postId)
+  
     const post = await BlogPost.findById(postId)
-    if(post){
-        console.log(post.title)
-    }else {
-        console.log(`No post found with ID ${postId}`);
-      }
+
    // res.sendFile('post.html',{root:pagePath})
    res.render('post',{
     post
@@ -74,18 +71,22 @@ app.post('/posts/store',async (req,res)=>{
 })
 const formValidation = (req,res,next)=>{
     if(req.files == null || req.body.title == null || req.body.body == null|| req.body.username == null || req.body.image == null){
-        console.log(req.body)
+  
         res.redirect('/posts/new')
        
     }
     next()
 }
+app.get('/auth/register',(req,res)=>{
+    res.render('register')
+})
+
 app.use('/posts/new',formValidation)
 app.use(express.static(publicPath))
 app.use('/post/assets/',express.static('public/assets/'))
 app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'..','public','views'))
-
+app.use('/users',UserRouter)
 app.listen(4000,()=>{
     console.log('App listening on port 4000');
 })
