@@ -7,10 +7,13 @@ const bodyParser = require('body-parser')
 const mongoose= require('mongoose')
 const Mongo_db_Url = "mongodb+srv://root-db:CDD8i9he5yJeMCfE@cluster0.ihpy6fx.mongodb.net/blogDB?retryWrites=true&w=majority"
 const BlogPost = require('./models/BlogPost')
+const fileUpload = require('express-fileupload');
+const { watch } = require('./models/BlogPost');
+
 mongoose.connect(Mongo_db_Url,{useNewUrlParser: true})
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
-
+app.use(fileUpload())
 
 app.get('/',async (req,res)=>{
   
@@ -48,16 +51,38 @@ app.get('/posts/new',(req,res)=>{
     res.render('create')
 })
 app.post('/posts/store',async (req,res)=>{
-    console.log(req.body)
-   
-        await BlogPost.create(req.body)
-        res.redirect('/')
-  
-   
+    if (!req.files || Object.keys(req.files).length === 0) {
+        return res.status(400).send('No files were uploaded.');
+      }
+        // The name of the input field (i.e. "image") is used to retrieve the uploaded file
+  let image = req.files.image;
+
+  // Use the mv() method to place the file in upload directory (i.e. "uploads")
+  image.mv('../public/assets/img/' + image.name, async function(err) {
+    if (err) return res.status(500).send(err);
+    await BlogPost.create({
+        ...req.body,
+        image:'../../assets/img/' + image.name
+
+    })
+
+    res.redirect('/');
+       
+        
+   });
+
 })
-
+const formValidation = (req,res,next)=>{
+    if(req.files == null || req.body.title == null || req.body.body == null|| req.body.username == null || req.body.image == null){
+        console.log(req.body)
+        res.redirect('/posts/new')
+       
+    }
+    next()
+}
+app.use('/posts/new',formValidation)
 app.use(express.static(publicPath))
-
+app.use('/post/assets/',express.static('public/assets/'))
 app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'..','public','views'))
 

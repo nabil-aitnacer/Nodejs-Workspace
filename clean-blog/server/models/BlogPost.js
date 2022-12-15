@@ -8,6 +8,10 @@ const BlogPostSchema = new Schema({
     dateposted:{
         type:Date,
         default:new Date()
+    },
+    image:{
+        type:String,
+        default:'../assets/img/home-bg.jpg'
     }
 });
 

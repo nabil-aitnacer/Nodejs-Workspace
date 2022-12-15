@@ -21,7 +21,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-8 col-md-10 mx-auto">
-                            <form action="/posts/store" method="POST" enctype="application/x-www-form-urlencoded">
+                            <form action="/posts/store" method="POST" enctype="multipart/form-data">
                                 <div class="control-group">
                                     <div class="form-group floating-label-form-group controls">
                                         <label>Title</label>
@@ -38,7 +38,13 @@
                                 <div class="control-group">
                                     <div class="form-group floating-label-form-group controls">
                                         <label>User Name</label>
-                                        <textarea rows="5" class="form-control" id="username" name="username"></textarea>
+                                        <input type="text" class="form-control" id="username" name="username"/>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="form-group floating-label-form-group controls">
+                                        <label>Image</label>
+                                        <input type="file" class="form-control" id="image" name="image">
                                     </div>
                                 </div>
                                 <br>
