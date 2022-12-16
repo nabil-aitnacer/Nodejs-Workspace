@@ -9,17 +9,20 @@ const Mongo_db_Url = "mongodb+srv://root-db:CDD8i9he5yJeMCfE@cluster0.ihpy6fx.mo
 const BlogPost = require('./models/BlogPost')
 const fileUpload = require('express-fileupload');
 const { watch } = require('./models/BlogPost');
+const expressSession= require('express-session')
 
 const UserRouter = require('./routers/user.router')
 mongoose.connect(Mongo_db_Url,{useNewUrlParser: true})
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(fileUpload())
-
+app.use(expressSession({
+    secret:'keyboard cat'
+}))
 app.get('/',async (req,res)=>{
   
     const blogposts= await BlogPost.find({})
-    console.log(blogposts)
+    console.log(req.session)
     res.render('index',{
         blogposts
     })
@@ -45,7 +48,10 @@ app.get('/post/:id',async (req,res)=>{
    })
 })
 app.get('/posts/new',(req,res)=>{
-    res.render('create')
+    if(req.session.userId){
+      return  res.render('create')
+    }
+    res.redirect('/users/login')
 })
 app.post('/posts/store',async (req,res)=>{
     if (!req.files || Object.keys(req.files).length === 0) {
