@@ -10,23 +10,45 @@ const BlogPost = require('./models/BlogPost')
 const fileUpload = require('express-fileupload');
 const { watch } = require('./models/BlogPost');
 const expressSession= require('express-session')
+const fash = require('connect-flash')
+global.loggedIn = null
 
 const UserRouter = require('./routers/user.router')
+
+const redirectIfAuthenticatedMiddleware = (req,res,next)=>{
+    if(req.session.userId){
+        return res.redirect('/')
+    }
+    next();
+}
 mongoose.connect(Mongo_db_Url,{useNewUrlParser: true})
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(fileUpload())
 app.use(expressSession({
     secret:'keyboard cat'
+    
 }))
+app.use('*',(req,res,next)=>{
+    try{
+        loggedIn = req.session.userId
+        console.log('Global loggedin '+ loggedIn)
+    }catch(err){
+        
+    }
+
+    next();
+    
+});
 app.get('/',async (req,res)=>{
   
-    const blogposts= await BlogPost.find({})
-    console.log(req.session)
+    const blogposts= await BlogPost.find({}).populate('userid')
+    console.log('Calling  / home')
     res.render('index',{
+    
         blogposts
-    })
-})
+    });
+});
 app.get('/about',(req,res)=>{
   
     //res.sendFile('about.html',{root:pagePath})
@@ -65,7 +87,8 @@ app.post('/posts/store',async (req,res)=>{
     if (err) return res.status(500).send(err);
     await BlogPost.create({
         ...req.body,
-        image:'../../assets/img/' + image.name
+        image:'../../assets/img/' + image.name,
+        userid:req.session.userId
 
     })
 
@@ -83,8 +106,16 @@ const formValidation = (req,res,next)=>{
     }
     next()
 }
-app.get('/auth/register',(req,res)=>{
-    res.render('register')
+app.get('/auth/register',redirectIfAuthenticatedMiddleware,(req,res)=>{
+    res.render('register',{
+        errors:req.session.validationErrors
+    })
+})
+app.get('/logout',(req,res)=>{
+    console.log('logout')
+    req.session.userId = null
+    loggedIn = null
+    res.redirect('/')
 })
 
 app.use('/posts/new',formValidation)
@@ -92,10 +123,14 @@ app.use(express.static(publicPath))
 app.use('/post/assets/',express.static('public/assets/'))
 app.set('view engine','ejs')
 app.set('views',path.join(__dirname,'..','public','views'))
-app.use('/users',UserRouter)
+
+app.use('/users',redirectIfAuthenticatedMiddleware,UserRouter)
+app.use((req,res)=> res.render('notfound'))
+
 app.listen(4000,()=>{
     console.log('App listening on port 4000');
 })
+
 mongoose.set('strictQuery', false);
 mongoose.connection.on('open',()=>{
     console.log('Connection is Ready ')

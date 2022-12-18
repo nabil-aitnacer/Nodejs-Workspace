@@ -1,18 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
+const Todo = require('../SOCKETS/TODO-List/server/todo.schema');
 const app =express();
 const PORT=5500;
-const path = require('path')
 const cors =require('cors')
 const bodyParser = require('body-parser');
 const MONGOOSE_URL = "mongodb+srv://root:cAHYnOKTRoeQDdVI@cluster0.ls5u6h8.mongodb.net/TodoDB?retryWrites=true&w=majority"
-const pupblicPath = path.join(__dirname,'..','public')
+
 const todoSchema = new mongoose.Schema({
     id:{
-        type:Number,
-        required:true,
-        unique:true
+        type:String,
+        required:true
     },
     description:{
         type:String,
@@ -25,12 +23,9 @@ const todoSchema = new mongoose.Schema({
 
     
 })
-todoSchema.set('id','id')
 const todo = mongoose.model('Todo',todoSchema)
-app.use(express.static(pupblicPath))
 app.use(bodyParser.json());
 app.use(cors())
-
 mongoose.connect(MONGOOSE_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -47,12 +42,7 @@ mongoose.connection.on('connected', () => {
     console.error('Mongoose connection failed:', err);
   });
 
-app.get('/',(req,res)=>{
-    res.type('html')
-    res.sendFile('public/index.html',{root:path.join(__dirname,'..')})
-})
 
-//insert TODo to mongo DB
   app.post('/',async (req,res)=>{
 
     try {
@@ -71,18 +61,7 @@ app.get('/',(req,res)=>{
     }
   })
 
-  // delete todo from data base 
 
-
-todo.findById(4, (err, todo) => {
-    if (err) {
-      // Handle the error...
-      console.log("Nout found")
-    } else {
-      console.log('Todo:', todo);
-    }
-  });
- 
 
   // Start the Express server
 app.listen(PORT, () => {

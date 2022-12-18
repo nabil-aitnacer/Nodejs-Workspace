@@ -6,16 +6,25 @@ userRouter.post('/register',async (req,res)=>{
     
     await User.create( req.body,(error,user)=>{
         if(error){
-            return res.redirect('/users/register')
+            console.log('creation error')
+           const validationErrors = Object.keys(error.errors).map(key => error.errors[key].message)
+           req.session.validationErrors =validationErrors
+            res.redirect('/auth/register');
+           
+        }else{
+            res.redirect('/')
+            
         }
+      
     })
 
-    res.redirect('/')
+    
 })
 userRouter.get('/login',(req,res)=>{
     res.render('login')
 })
 userRouter.post('/login',loginUserController)
+
 
 
 module.exports = userRouter 

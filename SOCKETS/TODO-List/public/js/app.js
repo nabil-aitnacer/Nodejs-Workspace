@@ -8,7 +8,7 @@ const element_date = document.getElementById('date');
 const today = new Date();
 const dateOptions= {weekday:"long",month:"short",day:"numeric"};
 element_date.innerHTML = today.toLocaleDateString('en-US',dateOptions);
-const URL = 'http://localhost:8000'
+const URL = 'http://localhost:5500'
 
 const CHECK = "fa-check-circle";
 const UNCHECK = "fa-circle-thin";
