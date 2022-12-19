@@ -43,6 +43,7 @@ app.use('*',(req,res,next)=>{
 app.get('/',async (req,res)=>{
   
     const blogposts= await BlogPost.find({}).populate('userid')
+    console.log(blogposts)
     console.log('Calling  / home')
     res.render('index',{
     
