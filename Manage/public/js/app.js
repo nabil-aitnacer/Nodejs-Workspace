@@ -1,4 +1,15 @@
-
+const deleteBtn = document.querySelector('#deleteBtn');
+const deleteIcon = document.querySelector('#deleteIcon')
+deleteIcon.addEventListener('click',(e)=>{
+	console.log(e.srcElement.attributes['_id'].value)
+	
+})
+let id;
+deleteBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+	console.log("Delete")
+}
+)
 let entrieToUpdate ={}
 $(document).ready(function(){
 	// Activate tooltip
@@ -40,6 +51,9 @@ function SetForm(message,e) {
   inputPhone.setAttribute('value',entrieToUpdate.phone)
   const inputId = document.getElementById('idInput')
   inputId.setAttribute('value',entrieToUpdate._id)
+  
+
+
 
 form.addEventListener('submit',(e)=>{
 
@@ -60,12 +74,16 @@ form.addEventListener('submit',(e)=>{
 	  },
 	  body: JSON.stringify(data)
 	}).then((response) => {
+		
 	  return response.json();
 	}).then((data) => {
 		console.log(data)
 	 window.location.reload();
 	}).catch((error) => {
-	  console.error(error);
+	  console.log('Hello ',error);
 	});
+
 })
   }
+
+

@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router();
-const employeModule = require('../modules/employee.module')
+const employeModule = require('../modules/employee.module');
+const { json } = require('body-parser');
 router.post('/add', async (req, res) => {
 
 
@@ -20,7 +21,7 @@ router.post('/add', async (req, res) => {
 })
 
 router.post('/edit',async(req,res)=>{
-    console.log(req.body);
+ 
     const update ={name:req.body.name,email:req.body.email,address:req.body.address,phone:req.body.phone}
     const options = { new: true };
     const query = employeModule.findOneAndUpdate({ _id: req.body._id }, update, options);
@@ -28,11 +29,9 @@ router.post('/edit',async(req,res)=>{
 
     clonedQuery.exec((error, employee) => {
       if (error) {
-        console.error(error);
-        res.status(400).json({
-            error:'DuplicateKey',
-            field:error.keyPattern
-        })
+        console.error({     error:'DuplicateKey',
+        field:error.keyPattern});
+        res.status(400).send(error)
 
       } else {
         console.log(employee);
