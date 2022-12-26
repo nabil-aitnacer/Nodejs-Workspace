@@ -2,7 +2,7 @@
   <div id="deleteEmployeeModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form>
+            <form id="deleteForm" method="get">
                 <div class="modal-header">
                     <h4 class="modal-title">Delete Employee</h4>
                     <button type="button" class="close"
@@ -17,8 +17,10 @@
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default"
                         data-dismiss="modal" value="Cancel">
+                           
                     <input id="deleteBtn" type="submit" class="btn btn-danger"
                         value="Delete">
+               
                 </div>
             </form>
         </div>

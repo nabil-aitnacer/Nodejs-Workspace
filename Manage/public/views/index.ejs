@@ -36,9 +36,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <% let id =0 %> 
                         <% list.forEach(element=> { %>
                             <%- include('./layout/entrie.ejs',{entrie:element})
                                 %>
+                              
                                 <% }) %>
                                 </tbody>
                             </table>
@@ -53,6 +55,13 @@
                         <%- include('./layout/edit.ejs') %> 
 
                           <%- include('./layout/delete.ejs') %>   
+                          <script>
+                            function setId(id){
+                                
+                              console.log(id)
+                              document.querySelector('#deleteForm').setAttribute('action',`/delete/${id}`)
+                            }
+                          </script>
                         <script src="./js/app.js"></script>
                     </body>
                 </html>

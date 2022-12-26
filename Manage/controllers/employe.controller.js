@@ -60,5 +60,14 @@ router.get('/', async (req, res) => {
     }
 
 })
-
+router.get('/delete/:id',(req,res)=>{
+    let id = req.params.id
+    employeModule.findByIdAndDelete(id,(err,user)=>{
+        if(err){
+            console.log(err)
+        }else {
+            res.redirect('/')
+        }
+    })
+})
 module.exports = router;

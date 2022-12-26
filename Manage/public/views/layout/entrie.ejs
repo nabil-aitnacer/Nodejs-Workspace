@@ -16,14 +16,15 @@
             data-toggle="modal"><i
                 class="material-icons"
                 data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-        <a href="#deleteEmployeeModal"
+        <a href="#deleteEmployeeModal" onclick="setId('<%= entrie._id %>')"  
             class="delete" data-toggle="modal">
             <i
             id="deleteIcon"
-            _id="<%= entrie._id %>"
+           
                 class="material-icons"
                 data-toggle="tooltip"
                 title="Delete">&#xE872;</i></a>
 
     </td>
+
 </tr>

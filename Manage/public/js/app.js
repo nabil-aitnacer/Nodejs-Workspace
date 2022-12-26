@@ -1,15 +1,5 @@
-const deleteBtn = document.querySelector('#deleteBtn');
-const deleteIcon = document.querySelector('#deleteIcon')
-deleteIcon.addEventListener('click',(e)=>{
-	console.log(e.srcElement.attributes['_id'].value)
-	
-})
-let id;
-deleteBtn.addEventListener('click', (e) => {
-	e.preventDefault();
-	console.log("Delete")
-}
-)
+
+
 let entrieToUpdate ={}
 $(document).ready(function(){
 	// Activate tooltip
@@ -34,10 +24,7 @@ $(document).ready(function(){
 		}
 	});
 });
-function editBtn(e){
-	
-	console.log(e.parentNode)
-}
+
 function SetForm(message,e) {
 	entrieToUpdate = JSON.parse(message);
 	const form = document.getElementById('editEmployeeModal')
