@@ -4,16 +4,23 @@ const app = express();
 const path =require('path')
 const homeRouter = require('./controllers/home.controller')
 const authRouter = require('./controllers/auth.controller')
+const https = require('https')
+const fs = require('fs')
+const helmet =require('helmet')
 
+app.use(helmet())
 app.use(express.static(path.join(__dirname,'public')))
 //set Template Engine
 app.set('view engine',"ejs")
 app.set('views',path.join(__dirname,'views'))
 
-
-app.use('/',homeRouter);
 app.use('/auth',authRouter)
+app.use('/',homeRouter);
 
-app.listen(3500,()=>{
+
+https.createServer({
+key: fs.readFileSync('key.pem'),
+cert:fs.readFileSync('cert.pem')
+},app).listen(3500,()=>{
     console.log('server listening on 3500')
 })

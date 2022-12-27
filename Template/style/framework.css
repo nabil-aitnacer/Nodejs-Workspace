@@ -1,0 +1,44 @@
+/*Start Box*/
+.d-flex{
+    display: flex;
+}
+.align-center{
+    align-items: center;
+}
+.rad-6{
+    border-radius: 6px;
+}
+/*Padding Margin*/
+.p-10{
+    padding: 10[x];
+}
+.p-20{
+    padding: 20px;
+}
+.m-20{
+    margin: 20px;
+}
+.mt-0{
+    margin-top: 0;
+}
+
+
+/* Color*/
+.bg-white{
+    background-color: white;
+}
+.c-black{
+    color: black;
+}
+
+/*Position*/
+.p-relative {
+    position: relative;
+}
+/*Font*/
+.tx-c {
+    text-align: center;
+}
+.fs-14{
+    font-size: 14px;
+}
