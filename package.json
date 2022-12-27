@@ -51,6 +51,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "nodejwt":"npm run watch --prefix node-jwt",
     "crud":"npm run watch --prefix Crud",
     "manage":"npm run watch --prefix Manage",
     "test": "echo \"Error: no test specified\" && exit 1"
