@@ -3,7 +3,10 @@ const router = express.Router();
 require('dotenv').config();
 const passport = require('passport')
 const {Strategy} = require('passport-google-oauth20')
-const cookieSession = require('cookie-session')
+const cookieSession = require('cookie-session');
+const { route } = require('./home.controller');
+
+let userId ;
 const config ={
     CLIENT_ID : process.env.CLIENT_ID,
     CLIENT_SECRET: process.env.CLIENT_SECRET,
@@ -23,10 +26,13 @@ const AUTH_OPTIONS ={
   }
   passport.use(new Strategy(AUTH_OPTIONS,verifyCallback))
 passport.serializeUser((user,done)=>{
-done(null,user)
+    console.log('USer :' ,user.id)
+    userId =user.id;
+done(null,user.id)
 })
-passport.deserializeUser((obj,done)=>{
-done(null,obj)
+passport.deserializeUser((id,done)=>{
+   
+done(null,id)
 })
 router.use(cookieSession({
     name:'session',
@@ -36,23 +42,38 @@ router.use(cookieSession({
 
 router.use(passport.initialize())
 passport.use(passport.session())
-router.get('/',(req,res)=>{
+
+router.get('/auth',(req,res)=>{
+
+     console.log(req.user)
+   if(req.isAuthenticated && req.user){
+    res.redirect('/')
+   }
     res.render('login')
 })
-router.get('/google',
+router.get('/auth/google',
 passport.authenticate('google',{
     scope:['email']
 }))
-router.get('/google/callback',passport.authenticate('google',{
+router.get('/auth/google/callback',passport.authenticate('google',{
     failureRedirect:'/auth/failure',
-    successRedirect:'/home',
+    successRedirect:'/',
     session:true
 }),(req,res)=>{
     console.log('google call us back')})
 
 
 
-router.get('/failure',(req,res)=>{
+router.get('/auth/failure',(req,res)=>{
 res.send('failure')
 })
-module.exports= router
+router.get('/',(req,res)=>{
+    if(req.isAuthenticated()){
+  res.render('home')
+    } else {
+        res.redirect('/auth')
+    }
+  
+})
+
+module.exports= {router,userId,passport}

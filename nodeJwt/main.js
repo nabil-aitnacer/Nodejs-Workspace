@@ -3,7 +3,7 @@ const ejs = require('ejs')
 const app = express();
 const path =require('path')
 const homeRouter = require('./controllers/home.controller')
-const authRouter = require('./controllers/auth.controller')
+const {router} = require('./controllers/auth.controller')
 const https = require('https')
 const fs = require('fs')
 const helmet =require('helmet')
@@ -14,8 +14,8 @@ app.use(express.static(path.join(__dirname,'public')))
 app.set('view engine',"ejs")
 app.set('views',path.join(__dirname,'views'))
 
-app.use('/auth',authRouter)
-app.use('/',homeRouter);
+app.use('/',router)
+
 
 
 https.createServer({
