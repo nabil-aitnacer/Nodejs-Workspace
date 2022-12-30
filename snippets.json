@@ -1,0 +1,11 @@
+{
+    "html": {
+      "snippets": {
+        "img:l": "img[width height loading='lazy']"
+      }
+    },
+    "css": {
+      "snippets": {
+      }
+    }
+  }
