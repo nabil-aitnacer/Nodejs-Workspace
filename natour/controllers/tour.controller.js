@@ -1,56 +1,23 @@
-const path = require('path');
-const fs = require('fs');
 const Tour = require('../models/db/tour.model');
-const { json } = require('express');
-const { match } = require('assert');
+const APIFeatures = require('../Utils/APIFeatures')
 
 module.exports.getAllTour = async (req, res) => {
   try {
-    //Buil Query
-    const queryParam = { ...req.query };
-    const excludeFields = ['page', 'sort', 'limit', 'fields'];
-    excludeFields.forEach((element) => delete queryParam[element]);
+    const feature = new APIFeatures(Tour, req.query);
+      console.log(feature.couuntTotal)
+    const tours = await feature.filter().sort().fields().pagination().query;
+    const countTours = await Tour.count();
 
-    //advanced filtering
-    let queryStr = JSON.stringify(queryParam);
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
-    let query = Tour.find(JSON.parse(queryStr));
-
-    //Sorting
-    if (req.query.sort) {
-      const sortBy =req.query.sort.split(',').join(' ')
-      query = query.sort(sortBy);
-      console.log(sortBy)
-    } else {
-     query = query.sort('-createdAt');
-    }
-
-    //fields
-    if(req.query.fields){
-      const fields = req.query.fields.split(',').join(' ')
-      query =query.select(fields)
-    } 
-
- const page =req.query.page || 1;
- const limit = req.query.limit || 20;
- const skip =(page-1)*limit
- if(req.query.page){
-  const countTours = await Tour.count()
-  if(skip > countTours){
-   throw new Error("This page doesnt exits")
-  }
-  console.log(countTours)
- }
- query = query.skip(skip).limit(limit)
-    const tours = await query;
     res.status(200).json({
       message: 'success',
       result: tours.length,
+      number_pages: Math.round(countTours / feature.limit),
       data: {
         tours: tours,
       },
     });
   } catch (error) {
+    console.error(error);
     returnJsonError(404, error.message, res);
   }
 };
@@ -149,3 +116,24 @@ function returnJsonError(statusCode, message, res) {
     message: message,
   });
 }
+module.exports.aliasCheapMiddle = (req, res, next) => {
+  req.query.limit = 5;
+  req.query.fields = 'name,ratingsAverage,difficulty,price,summary';
+  req.query.sort = 'ratingsAverage,-price';
+  console.log(req.query);
+  next();
+};
+module.exports.getTop5CheapTours = (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    from: '/top-5-cheap',
+  });
+};
+module.exports.checkIdGoNext = (req, res, next) => {
+  const id = req.params.id;
+  console.log('check id : ', req.params.id);
+
+  if (!id) {
+    next();
+  }
+};

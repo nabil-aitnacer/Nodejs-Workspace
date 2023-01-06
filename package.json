@@ -51,7 +51,7 @@
     "wcwidth": "^1.0.1"
   },
   "scripts": {
-    "natour": "npm run watch --prefix natour",
+    "natour": "npm run start --prefix natour",
     "nodejwt": "npm run watch --prefix nodeJwt",
     "crud": "npm run watch --prefix Crud",
     "manage": "npm run watch --prefix Manage",
