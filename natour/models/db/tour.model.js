@@ -21,7 +21,7 @@ const tourSchema = new mongoose.Schema({
   
   },
   ratingsAverage: {
-    type:String,
+    type:Number,
     required:[true,"A tour must have a difficulty "]
   },
   ratingsQuantity: {
@@ -70,6 +70,13 @@ const tourSchema = new mongoose.Schema({
   
 
 
+  },{
+    toJSON:{virtuals:true},
+    toObject:{virtuals:true}
+  })
+
+  tourSchema.virtual('durationWeeks').get(function(){
+    return this.duration/7
   })
   const Tour = mongoose.model('tours',tourSchema)
   module.exports = Tour

@@ -1,0 +1,10 @@
+use('natour');
+
+db.tours.updateMany({},{
+  $convert:{
+    input:"$ratingsAverage",
+    to:"double"
+  }},{
+    multi:true
+  }
+)

@@ -3,6 +3,7 @@ class APIFeatures {
       this.query = query;
       this.queryString = queryString;
       this.limit = 0;
+      const model =query
      
     }
     filter() {
@@ -14,7 +15,7 @@ class APIFeatures {
       let queryStr = JSON.stringify(queryParam);
       queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
       this.query = this.query.find(JSON.parse(queryStr));
-  
+     
       return this;
     }
     sort() {
@@ -30,16 +31,18 @@ class APIFeatures {
       if (this.queryString.fields) {
         const fields = this.queryString.fields.split(',').join(' ');
         this.query = this.query.select(fields);
+      } else {
+        this.query = this.query.select('-__v');
       }
       return this;
     }
     pagination() {
       this.page = this.queryString.page * 1 || 1;
-      this.limit = this.queryString.limit * 1 || 20;
+      this.limit = this.queryString.limit * 1 || 100;
       const skip = (this.page - 1) * this.limit;
   
       this.query = this.query.skip(skip).limit(this.limit);
-  
+      
       return this;
     }
   

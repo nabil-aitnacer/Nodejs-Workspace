@@ -1,17 +1,48 @@
 const Tour = require('../models/db/tour.model');
-const APIFeatures = require('../Utils/APIFeatures')
+const APIFeatures = require('../Utils/APIFeatures');
+const fs = require('fs');
+const path = require('path');
+const tourJson = path.join(
+  __dirname,
+  '..',
+  'dev-data',
+  'data',
+  'tours-simple.json'
+);
+const tours = JSON.parse(fs.readFileSync(tourJson));
+module.exports.setTours = async (req, res) => {
+  console.log(req.requestTime);
+  try {
+    await Tour.create(tours);
+    console.log('Data successfully loaded!');
+    res.status(200).json({
+      status: 'success',
+      requestedAt: req.requestTime,
+      results: tours.length,
+      data: {
+        tours,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 module.exports.getAllTour = async (req, res) => {
   try {
     const feature = new APIFeatures(Tour, req.query);
-      console.log(feature.couuntTotal)
+    console.log(feature.couuntTotal);
     const tours = await feature.filter().sort().fields().pagination().query;
     const countTours = await Tour.count();
+    const totalPages = Math.round(countTours / feature.limit);
+    if (req.query.page > totalPages) {
+      throw new Error('Page not Found');
+    }
 
     res.status(200).json({
       message: 'success',
       result: tours.length,
-      number_pages: Math.round(countTours / feature.limit),
+      number_pages: totalPages,
       data: {
         tours: tours,
       },
@@ -117,7 +148,7 @@ function returnJsonError(statusCode, message, res) {
   });
 }
 module.exports.aliasCheapMiddle = (req, res, next) => {
-  req.query.limit = 5;
+  req.query.limit = 13;
   req.query.fields = 'name,ratingsAverage,difficulty,price,summary';
   req.query.sort = 'ratingsAverage,-price';
   console.log(req.query);
@@ -135,5 +166,110 @@ module.exports.checkIdGoNext = (req, res, next) => {
 
   if (!id) {
     next();
+  }
+};
+module.exports.getToursStats = async (req, res) => {
+  try {
+    const stats = await Tour.aggregate([
+      {
+        $match: { ratingsAverage: { $gte: 4.5 } },
+      },
+      {
+        $group: {
+          _id: '$difficulty',
+          numTours: { $sum: 1 },
+          numRatings: { $sum: '$ratingsQuantity' },
+          avgRating: { $avg: '$ratingsAverage' },
+          avgPrice: { $avg: '$price' },
+          minPrice: { $min: '$price' },
+          maxPrice: { $max: '$price' },
+        },
+      },
+      {
+        $sort: {
+          avgPrice: -1,
+        },
+      },
+      /*,{
+        $match :{
+          _id:{$ne:'easy'}
+        }
+      }*/
+    ]);
+
+    res.status(201).json({
+      status: 'success',
+      data: {
+        tours: stats,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'fails',
+      data: {
+        tours: error.message,
+      },
+    });
+  }
+};
+
+module.exports.getToursByMonths = async (req, res) => {
+  try {
+    const year = req.params.year * 1;
+    const plan = await Tour.aggregate([
+      {
+        $unwind: '$startDates',
+      },
+      {
+        $match: {
+          startDates: {
+            $gte: new Date(`${year}-01-01`),
+            $lte: new Date(`${year}-12-31`),
+          },
+        },
+      },
+      {
+        $group: {
+          _id: { $month: '$startDates' },
+          numTours: { $sum: 1 },
+          tours: { $push: '$name' },
+        },
+      },
+      {
+        $addFields: {
+          month: '$_id',
+        },
+      },
+      {
+        $project: {
+          _id:0
+        },
+      },
+      {
+        $sort: {
+          numTours: -1,
+       
+        },
+       
+      },{
+        $limit:12
+      }
+    ]);
+
+    res.status(201).json({
+      status: 'success',
+      result: plan.length,
+      data: {
+        tours: plan,
+      },
+    });
+  } catch (error) {
+    res.status(400).json({
+      status: 'fails',
+
+      data: {
+        tours: error.message,
+      },
+    });
   }
 };
