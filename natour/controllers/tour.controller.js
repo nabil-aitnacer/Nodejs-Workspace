@@ -1,5 +1,7 @@
+const AppError = require('../Utils/AppError');
 const Tour = require('../models/db/tour.model');
 const APIFeatures = require('../Utils/APIFeatures');
+const catchAndSync = require('../Utils/utils')
 const fs = require('fs');
 const path = require('path');
 const tourJson = path.join(
@@ -28,8 +30,8 @@ module.exports.setTours = async (req, res) => {
   }
 };
 
-module.exports.getAllTour = async (req, res) => {
-  try {
+module.exports.getAllTour = catchAndSync( async (req, res,next) => {
+
     const feature = new APIFeatures(Tour, req.query);
     console.log(feature.couuntTotal);
     const tours = await feature.filter().sort().fields().pagination().query;
@@ -47,60 +49,54 @@ module.exports.getAllTour = async (req, res) => {
         tours: tours,
       },
     });
-  } catch (error) {
-    console.error(error);
-    returnJsonError(404, error.message, res);
-  }
-};
+ 
+});
 
-module.exports.getTourById = async (req, res) => {
-  try {
+module.exports.getTourById = catchAndSync( async (req, res,next) => {
     const tour = await Tour.find({ _id: req.params.id });
+    if(!tour){
+      return next(new AppError(`No tour found for this is ${id} `,404))
+    }
     res.status(200).json({
       message: 'success',
       data: {
         tour: tour,
       },
     });
-  } catch (error) {
-    returnJsonError(404, error.message, res);
-  }
-};
-module.exports.deleteTour = async (req, res) => {
-  const id = req.params.id;
-  try {
+  } );
+module.exports.deleteTour =catchAndSync( async (req, res,next) => {
+const id =req.params.id ;
     const tour = await Tour.findById(id);
-    if (!tour) {
-      returnJsonError(404, 'Tour not Found', res);
-    }
+      if(!tour){
+        return next(new AppError(`No tour found for this is ${id} `,404))
+      }
     await tour.remove();
     res.status(204).json({
       message: 'success',
       tour_deleted: tour,
     });
-  } catch (error) {
-    returnJsonError(404, error, res);
-  }
-};
-module.exports.updateTour = async (req, res) => {
+
+});
+module.exports.updateTour = catchAndSync( async (req, res,next) => {
   const id = req.params.id;
-  try {
+
+
     const tour = await Tour.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true,
     });
-
+    if(!tour){
+      return next(new AppError(`No tour found for this is ${id} `,404))
+    }
     res.status(201).json({
       message: 'success',
       tour: tour,
     });
-  } catch (error) {
-    returnJsonError(404, error, res);
-  }
-};
 
-module.exports.addTour = async (req, res) => {
-  try {
+});
+
+module.exports.addTour = catchAndSync( async (req, res,next) => {
+
     const newTour = await Tour.create(req.body);
 
     res.status(201).json({
@@ -109,43 +105,33 @@ module.exports.addTour = async (req, res) => {
         tours: newTour,
       },
     });
-  } catch (error) {
-    res.status(400).json({
-      status: 'fails',
-      data: {
-        tours: error.message,
-      },
-    });
-  }
-};
+
+});
 
 module.exports.checkId = (req, res, next, val) => {
   console.log('id : ', val);
   if (!val || val > 12) {
-    return res.status(404).json({
-      status: 'failed',
-      message: 'please provie an ID',
-    });
+   
+   return  next(AppError('please provie an ID', 404))
   }
 
   next();
 };
 module.exports.checkBody = function (req, res, next) {
   if (!req.body.name || !req.body.price) {
-    return res.status(404).json({
-      status: 'failed',
-      message: 'please provid valid Tour Data',
-    });
+    
+    return next(AppError('please provid valid Tour Data', 404))
+    ;
   }
-  console.log('Body : ', req.body);
+
   next();
 };
 
-function returnJsonError(statusCode, message, res) {
-  return res.status(statusCode).json({
-    status: 'failed',
-    message: message,
-  });
+function returnError(statusCode, message, status) {
+  const err = new Error(message)
+  err.statusCode = statusCode;
+  err.status=status
+  return err;
 }
 module.exports.aliasCheapMiddle = (req, res, next) => {
   req.query.limit = 13;
@@ -162,14 +148,14 @@ module.exports.getTop5CheapTours = (req, res) => {
 };
 module.exports.checkIdGoNext = (req, res, next) => {
   const id = req.params.id;
-  console.log('check id : ', req.params.id);
+  
 
   if (!id) {
     next();
   }
 };
-module.exports.getToursStats = async (req, res) => {
-  try {
+module.exports.getToursStats = catchAndSync( async (req, res,next) => {
+ 
     const stats = await Tour.aggregate([
       {
         $match: { ratingsAverage: { $gte: 4.5 } },
@@ -203,18 +189,11 @@ module.exports.getToursStats = async (req, res) => {
         tours: stats,
       },
     });
-  } catch (error) {
-    res.status(400).json({
-      status: 'fails',
-      data: {
-        tours: error.message,
-      },
-    });
-  }
-};
 
-module.exports.getToursByMonths = async (req, res) => {
-  try {
+});
+
+module.exports.getToursByMonths =  catchAndSync( async (req, res,next) => {
+
     const year = req.params.year * 1;
     const plan = await Tour.aggregate([
       {
@@ -263,13 +242,5 @@ module.exports.getToursByMonths = async (req, res) => {
         tours: plan,
       },
     });
-  } catch (error) {
-    res.status(400).json({
-      status: 'fails',
 
-      data: {
-        tours: error.message,
-      },
-    });
-  }
-};
+});
