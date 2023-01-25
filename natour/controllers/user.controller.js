@@ -1,18 +1,14 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable node/no-unsupported-features/es-syntax */
-const path = require('path');
-const fs = require('fs');
-const userFilePath = path.resolve(
-  __dirname,
-  '..',
-  'dev-data',
-  'data',
-  'users.json'
-);
+const User = require('../models/db/user.model');
 
-const users = JSON.parse(fs.readFileSync(userFilePath));
+const catchAndSync = require('../Utils/utils')
 
-module.exports.getAllUsers = (req, res) => {
+//TODO: user conteroller complet function
+
+module.exports.getAllUsers = catchAndSync ( async (req, res,next) => {
+  const users =await User.find({});
+
   res.status(200).json({
     message: 'success',
     result: users.length,
@@ -20,12 +16,12 @@ module.exports.getAllUsers = (req, res) => {
       users: users
     }
   });
-};
+});
 
 module.exports.getUserById = async (req, res) => {
   const { id } = req.params;
   if (id) {
-    const user = users.find(el => el._id === req.params.id);
+ 
     res.status(200).json({
       message: 'success',
       data: {
@@ -73,15 +69,7 @@ module.exports.addUser = (req, res) => {
     const newId = req.params.id;
     const user = Object.assign({ id: newId }, req.body);
 
-    users.push(user);
-    fs.writeFile(userFilePath, JSON.stringify(users), _err => {
-      res.status(201).json({
-        status: 'success',
-        data: {
-          users: user
-        }
-      });
-    });
+
     // eslint-disable-next-line no-empty
   } else {
   }

@@ -10,4 +10,5 @@ router.patch('/:id', userController.updateUserById);
 router.delete('/:id', userController.deleteUserById);
 
 router.post('/signup',auth.signup)
+router.post('/login',auth.logIn)
 module.exports = router;
