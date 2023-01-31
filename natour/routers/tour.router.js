@@ -12,8 +12,8 @@ router.get('/:id', tourController.getTourById);
 router.get('/', tourController.checkIdGoNext,authController.protect,tourController.getAllTour);
 
 
-router.post('/',  tourController.addTour);
-router.patch('/:id',tourController.updateTour);
-router.delete('/:id', tourController.deleteTour);
+router.post('/',authController.protect,authController.restricTo('admin','lead-guide'),  tourController.addTour);
+router.patch('/:id',authController.protect,authController.restricTo('admin','lead-guide'),tourController.updateTour);
+router.delete('/:id',authController.protect,authController.restricTo('admin','lead-guide'), tourController.deleteTour);
 
 module.exports = router;

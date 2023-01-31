@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
+const crypto = require('crypto')
 const UserSchma = new mongoose.Schema({
   name: {
     type: String,
@@ -15,6 +16,14 @@ const UserSchma = new mongoose.Schema({
     unique: true,
     lowercase: true,
     validate: [validator.isEmail, "Please provide a valide email"]
+  },
+  photo:String,
+  role:{
+type:String,
+enum:['user','admin','guide','lead-guide'],
+default:'user'
+
+
   },
   password: {
     type: String,
@@ -33,6 +42,9 @@ const UserSchma = new mongoose.Schema({
       message: "password are not the same",
     },
   },
+  passwordChangeAt:Date,
+  passwordResetToken:String,
+  passwordResetExpires:Date
 });
 //TODO:"Should change validation in the saving and use   mongoose-unique-validator"
 UserSchma.pre("save", async function (next) {
@@ -47,6 +59,21 @@ UserSchma.pre("save", async function (next) {
 
 UserSchma.methods.correctPassword = async function(condidatePassword,userPassword){
   return await bcrypt.compare(condidatePassword,userPassword);
+}
+UserSchma.methods.changedPasswordAfter= function (JWTTimestamp) {
+  if(this.passwordChangeAt){
+    const changedTimestamp = parseInt(this.passwordChangeAt/1000,10)
+    return JWTTimestamp < changedTimestamp
+  } else {
+    return false;
+  }
+}
+UserSchma.methods.createPasswordResetToken=function () {
+  const resetToken = crypto.randomBytes(32).toString('hex')
+  this.passwordResetToken= crypto.createHash('sha256').update(resetToken).digest('hex')
+  console.log({resetToken},this.passwordResetToken)
+  this.passwordResetExpires=Date.now() + 10*60*1000 //== 10 min
+  return resetToken;
 }
 const userModel = mongoose.model("user", UserSchma);
 module.exports = userModel;
