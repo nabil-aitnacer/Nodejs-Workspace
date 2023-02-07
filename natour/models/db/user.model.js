@@ -56,7 +56,12 @@ UserSchma.pre("save", async function (next) {
   //delete confirm password dont save it in db
   this.passwordConfirm = undefined;
 });
-
+UserSchma.pre('save',async function(next){
+  if(!this.isModified('password' || this.isNew)) return next()
+  //-1000 just to adjust time sometime chageate save before timestaptoken save
+  this.passwordChangeAt = Date.now() - 1000
+  next();
+})
 UserSchma.methods.correctPassword = async function(condidatePassword,userPassword){
   return await bcrypt.compare(condidatePassword,userPassword);
 }

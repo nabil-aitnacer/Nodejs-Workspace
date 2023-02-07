@@ -3,6 +3,7 @@ const catchAndSync = require("../Utils/utils");
 const sendEmail = require("../Utils/email");
 const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
+const crypto = require('crypto')
 
 const AppError = require("../Utils/AppError");
 const { use } = require("../routers/tour.router");
@@ -67,9 +68,9 @@ module.exports.protect = catchAndSync(async (req, res, next) => {
 
   //promisify method allows you to convert a callback-based function to a promise-based function
   const decode = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  console.log(decode.id);
+
   const user = await User.findOne({ _id: decode.id });
-  console.log(user);
+
   if (!user) {
     return sendError(
       "The user belonging to this token does no longer exits",
@@ -85,7 +86,7 @@ module.exports.protect = catchAndSync(async (req, res, next) => {
     );
   }
   req.user = user;
-  console.log(user);
+
   next();
 });
 module.exports.forgotPassword = catchAndSync(async (req, res, next) => {
@@ -118,13 +119,27 @@ module.exports.forgotPassword = catchAndSync(async (req, res, next) => {
   }
 });
 
-//TODO: video 136 
-module.exports.resetpassword = catchAndSync(async (req, res, next) => {
 
-    res.status(200).json({
-        status: "succes",
-      toke: req.params.token,
-    })
+module.exports.resetpassword = catchAndSync(async (req, res, next) => {
+    const hashedToken= crypto.createHash('sha256').update(req.params.token).digest('hex');
+    //find user by hashed token 
+    const user =await User.findOne({passwordResetToken:hashedToken,
+    
+    passwordResetExpires:{$gte: Date.now()}});
+      if(!user){
+        return sendError('Token is invalid or has expired',400,next)
+      }
+      user.password= req.body.password;
+      user.passwordConfirm =req.body.passwordConfirm
+      user.passwordResetToken = undefined
+      user.passwordResetExpires = undefined
+      await user.save()
+
+  const token = await signToken(user._id);
+  res.status(200).json({
+    status: "succes",
+    token,
+  });
 });
 module.exports.restricTo = (...roles) => {
   return (req, res, next) => {
@@ -134,8 +149,10 @@ module.exports.restricTo = (...roles) => {
         403,
         next
       );
+    } else {
+      return next();
     }
-    next();
+    
   };
 };
 

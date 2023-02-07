@@ -8,6 +8,7 @@ const catchAndSync = require('../Utils/utils')
 
 module.exports.getAllUsers = catchAndSync ( async (req, res,next) => {
   const users =await User.find({});
+  console.log("All USer")
 
   res.status(200).json({
     message: 'success',
