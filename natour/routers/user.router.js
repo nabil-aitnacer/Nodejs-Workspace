@@ -17,5 +17,6 @@ router.patch('/updatePassword',auth.protect,auth.updatePasword)
 
 router.patch('/updateMe', auth.protect,userController.updateMe);
 router.patch('/:id', auth.protect,auth.restricTo('admin','lead-guide'),userController.updateUserById);
+router.delete('/deleteMe', auth.protect,userController.deleteMe);
 router.delete('/:id',auth.protect,auth.restricTo('admin','lead-guide'), userController.deleteUserById);
 module.exports = router;

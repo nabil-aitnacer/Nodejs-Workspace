@@ -92,4 +92,9 @@ module.exports.updateMe = catchAndSync(async(req,res,next)=>{
 
   })
 })
-
+module.exports.deleteMe= catchAndSync(async(req,res,next)=>{
+  await User.findByIdAndUpdate(req.user._id,{'active':false})
+  res.status(200).json({
+    status:"succes"
+  })
+})

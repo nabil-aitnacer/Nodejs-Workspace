@@ -176,8 +176,10 @@ module.exports.updatePasword = catchAndSync(async (req, res, next) => {
   
 });
 module.exports.restricTo = (...roles) => {
-  return (req, res, next) => {
-    if (!roles.includes(req.user.role)) {
+  
+  return async(req, res, next) => {
+    const user =await User.findById(req.user._id).select('+role')
+    if (!roles.includes(user.role)) {
       return sendError(
         "You don't have permission to prefom this action",
         403,

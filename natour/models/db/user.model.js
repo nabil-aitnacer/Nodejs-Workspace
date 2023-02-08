@@ -45,7 +45,16 @@ const UserSchma = new mongoose.Schema({
   passwordChangeAt: Date,
   passwordResetToken: String,
   passwordResetExpires: Date,
+  active:{
+    type:Boolean,
+    default:true
+  }
 });
+//BEFORE GETINH THE QYERU RESULT
+UserSchma.pre(/^find/,function(next){
+  this.find({ active: { $ne: false } });
+  next()
+})
 //TODO:"Should change validation in the saving and use   mongoose-unique-validator"
 UserSchma.pre("save", async function (next) {
   //if password not change don't hash
