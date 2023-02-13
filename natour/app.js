@@ -1,8 +1,13 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const appError =require('./Utils/AppError')
+const ratteLimit = require('express-rate-limit')
 dotenv.config({ path: './config.env' });
 const errorController = require('./controllers/error.controller')
+const helmet =require('helmet')
+const sanitize = require('express-mongo-sanitize')
+const xss =require('xss-clean')
+const hpp =require('hpp')
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASE_PASSWORD
@@ -24,19 +29,39 @@ const tourRouter = require('./routers/tour.router');
 const userRouter = require('./routers/user.router');
 const AppError = require('./Utils/AppError');
 const app = express();
+app.use(helmet())
+const limiter = ratteLimit({
+  max:100,
+  windowMs:60*60*1000,
+  message:"Too Many request from this IP,please try again in an hour"
+})
 
 //MiddleWare
 if (process.env.NODE_ENV === 'development') {
   app.use(logger('dev'));
 }
 const port = process.env.PORT || 3000;
-app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api', limiter);
+app.use(express.json({limmit:'10kb  '}));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(sanitize())
+app.use(xss())
 //Routers
+
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
+app.use(hpp({
 
+  whitelist:[
+    'duration',
+    'ratingQuantity',
+    'ratingsAverage',
+    'maxGroupSize',
+    'difficulty',
+    'price'
+  ]
+}))
 //no matter wich request post or get or delete ....
 app.all('*',(req,res,next)=>{
 

@@ -13,13 +13,27 @@ const signToken = (id) => {
   });
 };
 
-const signAndRes = async (id, statusCode, res) => {
-  const token = await signToken(id);
 
-  res.status(statusCode).json({
-    status: "Success",
-    token: token,
-  });
+const signAndRes = async (user, statusCode, res) => {
+  const token = await signToken(user._id);
+  const cookieOptions = {
+    expires: new Date( 
+        Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true
+};
+if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+res.cookie('jwt', token, cookieOptions);
+user.role=undefined
+
+// Remove password from output
+user.password = undefined;
+return res.status(statusCode).json({
+    status: 'success',
+ 
+    token,
+    data: {user}
+});
 };
 module.exports.signup = catchAndSync(async (req, res, next) => {
   const newUser = await User.create({
@@ -39,7 +53,7 @@ module.exports.signup = catchAndSync(async (req, res, next) => {
     },
   });
   */
-  signAndRes(newUser._id, 201, res);
+  signAndRes(newUser, 201, res);
 });
 
 module.exports.logIn = async (req, res, next) => {
