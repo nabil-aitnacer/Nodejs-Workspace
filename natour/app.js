@@ -29,7 +29,9 @@ const tourRouter = require('./routers/tour.router');
 const userRouter = require('./routers/user.router');
 const AppError = require('./Utils/AppError');
 const app = express();
+//this is for header securet
 app.use(helmet())
+// limit request by 1 hour for ip 
 const limiter = ratteLimit({
   max:100,
   windowMs:60*60*1000,
@@ -42,15 +44,22 @@ if (process.env.NODE_ENV === 'development') {
 }
 const port = process.env.PORT || 3000;
 
+//set reques limit
 app.use('/api', limiter);
-app.use(express.json({limmit:'10kb  '}));
+//minimize json responce to only 10kb
+app.use(express.json({limit:'10kb  '}));
 app.use(express.static(path.join(__dirname, 'public')));
+
+// this to prevent no sql injection
 app.use(sanitize())
+//this prevet html injection
 app.use(xss())
 //Routers
 
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
+
+//this for query paramter to not get duplicate field and only from whitelise
 app.use(hpp({
 
   whitelist:[
