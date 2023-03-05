@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
-//no matter wich request post or get or delete ....
+//no matter witch request post or get or delete ....
 app.all('*',(req,res,next)=>{
 
   const err = new Error(`No page found for this link ${req.originalUrl}`)
