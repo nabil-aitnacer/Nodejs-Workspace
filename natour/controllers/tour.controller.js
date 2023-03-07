@@ -9,7 +9,7 @@ const tourJson = path.join(
   '..',
   'dev-data',
   'data',
-  'tours-simple.json'
+  'tours.json'
 );
 const tours = JSON.parse(fs.readFileSync(tourJson));
 module.exports.setTours = async (req, res) => {
@@ -53,7 +53,7 @@ module.exports.getAllTour = catchAndSync( async (req, res,next) => {
 });
 
 module.exports.getTourById = catchAndSync( async (req, res,next) => {
-    const tour = await Tour.find({ _id: req.params.id });
+    const tour = (await Tour.find({ _id: req.params.id }));
     if(!tour){
       return next(new AppError(`No tour found for this is ${id} `,404))
     }

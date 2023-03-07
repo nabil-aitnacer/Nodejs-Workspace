@@ -95,7 +95,7 @@ const tourSchema = new mongoose.Schema(
     }],
     guides:[{
       type:mongoose.Schema.ObjectId,
-      ref:'User'
+      ref:'user'
     }]
   },
 
@@ -121,6 +121,13 @@ tourSchema.pre(/^find/, function (next) {
   this.find({ secretTour: { $ne: true } });
   next();
 });
+tourSchema.pre(/^find/,function(next){
+  this.populate({
+    path:'guides',
+    select:'-__v -passwordChangeAt'
+  })
+  next()
+})
 //this run before aggregatiion
 tourSchema.pre("aggregate", function (next) {
   this.pipeline().unshift({
