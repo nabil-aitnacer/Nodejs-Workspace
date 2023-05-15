@@ -18,6 +18,8 @@ const mongoose = require('mongoose');
 //Get the default connection
 const db = mongoose.connection;
 
+
+
 //Set up default mongoose connection
 mongoose.set('strictQuery', false);
 mongoose.connect(DB, { useNewUrlParser: true });
@@ -27,6 +29,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const tourRouter = require('./routers/tour.router');
 const userRouter = require('./routers/user.router');
+const reviewRouter = require('./routers/review.tour')
 const AppError = require('./Utils/AppError');
 const app = express();
 //this is for header securet
@@ -58,6 +61,7 @@ app.use(xss())
 
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/reviews', reviewRouter);
 
 //this for query paramter to not get duplicate field and only from whitelise
 app.use(hpp({
