@@ -29,7 +29,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const tourRouter = require('./routers/tour.router');
 const userRouter = require('./routers/user.router');
-const reviewRouter = require('./routers/review.tour')
+const reviewRouter = require('./routers/review.router')
 const AppError = require('./Utils/AppError');
 const app = express();
 //this is for header securet

@@ -53,7 +53,7 @@ module.exports.getAllTour = catchAndSync( async (req, res,next) => {
 });
 
 module.exports.getTourById = catchAndSync( async (req, res,next) => {
-    const tour = (await Tour.find({ _id: req.params.id }));
+    const tour = ((await Tour.find({ _id: req.params.id }).populate('tourReviews')));
     if(!tour){
       return next(new AppError(`No tour found for this is ${id} `,404))
     }
@@ -191,7 +191,12 @@ module.exports.getToursStats = catchAndSync( async (req, res,next) => {
     });
 
 });
-
+module.exports.getTourAndReview= catchAndSync( async (req,res,next)=>{
+  res.status(202).json({
+    status: 'success',
+ message :"Tour with Review"
+  });
+})
 module.exports.getToursByMonths =  catchAndSync( async (req, res,next) => {
 
     const year = req.params.year * 1;

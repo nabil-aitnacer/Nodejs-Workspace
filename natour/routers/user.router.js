@@ -5,8 +5,9 @@ const userController = require('../controllers/user.controller');
 
 
 router.get('/',auth.protect,auth.restricTo('admin','lead-guide','guide'), userController.getAllUsers);
-router.get('/:id',auth.protect,auth.restricTo('admin','lead-guide','guide'), userController.getUserById);
 
+router.get('/me',auth.protect,userController.getMe,userController.getUserById)
+router.get('/:id?',auth.protect,auth.restricTo('admin','lead-guide','guide'), userController.getUserById);
 
 
 router.post('/signup',auth.signup)

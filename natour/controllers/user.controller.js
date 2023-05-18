@@ -2,7 +2,7 @@
 /* eslint-disable node/no-unsupported-features/es-syntax */
 const { up } = require('inquirer/lib/utils/readline');
 const User = require('../models/db/user.model');
-
+const factory = require('../controllers/handlerfactory')
 const catchAndSync = require('../Utils/utils')
 
 //TODO: user conteroller complet function
@@ -25,20 +25,11 @@ module.exports.getAllUsers = catchAndSync ( async (req, res,next) => {
     }
   });
 });
-
-module.exports.getUserById = catchAndSync( async (req, res) => {
-  const { id } = req.params;
-  if (id) {
-    const user = await User.findById(id)
- 
-    res.status(200).json({
-      message: 'success',
-      data: {
-        user: user
-      }
-    });
-  } 
-});
+module.exports.getMe = (req,res,next)=>{
+  req.params.id = req.user._id;
+  next();
+}
+module.exports.getUserById = factory.getOne(User)
 module.exports.deleteUserById = catchAndSync(async(req, res,next) => {
   const { id } = req.params;
  
