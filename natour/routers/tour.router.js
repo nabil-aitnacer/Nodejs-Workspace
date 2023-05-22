@@ -12,11 +12,12 @@ router.get('/toursByMonths/:year',tourController.getToursByMonths)
 router.get('/:id', tourController.getTourById);
 router.get('/:id/reviews/:id',authController.protect,tourController.getTourAndReview)
 router.get('/', tourController.checkIdGoNext,tourController.getAllTour);
-
+//nested router
 router.use('/:tourId/review',reviewRouter)
 
-router.post('/',authController.protect,authController.restricTo('admin','lead-guide'),  tourController.addTour);
+
 router.use(authController.protect,authController.restricTo('admin','lead-guide'))
+router.post('/',  tourController.addTour);
 router.patch('/:id',tourController.updateTour);
 router.delete('/:id', tourController.deleteTour);
 
