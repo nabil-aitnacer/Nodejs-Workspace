@@ -4,6 +4,7 @@ class APIFeatures {
       this.queryString = queryString;
       this.limit = 0;
       const model =query
+      this.total = 0;
      
     }
     filter() {
@@ -42,11 +43,16 @@ class APIFeatures {
       const skip = (this.page - 1) * this.limit;
   
       this.query = this.query.skip(skip).limit(this.limit);
-      
+     
       return this;
     }
   
     getNumPages() {
+      
+        const totalDocuments = this.query.model.countDocuments({});
+        const totalPages = Math.ceil(totalDocuments / this.limit);
+    
+        return totalPages;
       
     }
   }

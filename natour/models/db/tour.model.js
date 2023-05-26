@@ -95,10 +95,13 @@ const tourSchema = new mongoose.Schema(
     }],
     guides:[{
       type:mongoose.Schema.ObjectId,
-      ref:'User'
+      ref:'user'
+    }],
+    reviews:[{
+      type:mongoose.Schema.ObjectId,
+      ref :'review'
     }]
   },
-
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
@@ -108,6 +111,11 @@ const tourSchema = new mongoose.Schema(
 tourSchema.virtual("durationWeeks").get(function () {
   return this.duration / 7;
 });
+tourSchema.virtual("tourReviews",{
+  ref :'review',
+  foreignField : 'tour',
+  localField:'_id'
+})
 //middleWare after getting document and start saving this middalwware run only before insert or create
 tourSchema.pre("save", function (next) {
   this.slug = slugify(this.name, { lower: true });
@@ -121,6 +129,13 @@ tourSchema.pre(/^find/, function (next) {
   this.find({ secretTour: { $ne: true } });
   next();
 });
+tourSchema.pre(/^find/,function(next){
+  this.populate({
+    path:'guides',
+    select:'-__v -passwordChangeAt'
+  })
+  next()
+})
 //this run before aggregatiion
 tourSchema.pre("aggregate", function (next) {
   this.pipeline().unshift({

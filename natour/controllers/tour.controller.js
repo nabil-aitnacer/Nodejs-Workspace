@@ -1,6 +1,7 @@
 const AppError = require('../Utils/AppError');
 const Tour = require('../models/db/tour.model');
 const APIFeatures = require('../Utils/APIFeatures');
+const factory = require("../controllers/handlerfactory");
 const catchAndSync = require('../Utils/utils')
 const fs = require('fs');
 const path = require('path');
@@ -9,7 +10,7 @@ const tourJson = path.join(
   '..',
   'dev-data',
   'data',
-  'tours-simple.json'
+  'tours.json'
 );
 const tours = JSON.parse(fs.readFileSync(tourJson));
 module.exports.setTours = async (req, res) => {
@@ -33,8 +34,9 @@ module.exports.setTours = async (req, res) => {
 module.exports.getAllTour = catchAndSync( async (req, res,next) => {
 
     const feature = new APIFeatures(Tour, req.query);
-    console.log(feature.couuntTotal);
+    const _tours = await Tour.find({});
     const tours = await feature.filter().sort().fields().pagination().query;
+    console.log(feature.total);
     const countTours = await Tour.count();
     const totalPages = Math.round(countTours / feature.limit);
     if (req.query.page > totalPages) {
@@ -52,31 +54,11 @@ module.exports.getAllTour = catchAndSync( async (req, res,next) => {
  
 });
 
-module.exports.getTourById = catchAndSync( async (req, res,next) => {
-    const tour = await Tour.find({ _id: req.params.id });
-    if(!tour){
-      return next(new AppError(`No tour found for this is ${id} `,404))
-    }
-    res.status(200).json({
-      message: 'success',
-      data: {
-        tour: tour,
-      },
-    });
-  } );
-module.exports.deleteTour =catchAndSync( async (req, res,next) => {
-const id =req.params.id ;
-    const tour = await Tour.findById(id);
-      if(!tour){
-        return next(new AppError(`No tour found for this is ${id} `,404))
-      }
-    await tour.remove();
-    res.status(204).json({
-      message: 'success',
-      tour_deleted: tour,
-    });
+module.exports.getTourById =factory.getOne(Tour);
 
-});
+module.exports.deleteTour =factory.deleteOne(Tour);
+
+
 module.exports.updateTour = catchAndSync( async (req, res,next) => {
   const id = req.params.id;
 
@@ -191,7 +173,12 @@ module.exports.getToursStats = catchAndSync( async (req, res,next) => {
     });
 
 });
-
+module.exports.getTourAndReview= catchAndSync( async (req,res,next)=>{
+  res.status(202).json({
+    status: 'success',
+ message :"Tour with Review"
+  });
+})
 module.exports.getToursByMonths =  catchAndSync( async (req, res,next) => {
 
     const year = req.params.year * 1;

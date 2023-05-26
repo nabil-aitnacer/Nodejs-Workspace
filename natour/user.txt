@@ -1,0 +1,11 @@
+user :
+"email": "userAdmin140@natours.io",
+"password": "123456789"
+  "user": "64639e34d8d3b9fb2788fc80"
+
+Admin
+"email": "userAdmin10@natours.io",
+
+"password": "123456789qwe"
+
+ "user": "63ea4a4acd9ac4087e837d1f"
