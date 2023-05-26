@@ -1,0 +1,174 @@
+[debug] [2023-03-05T12:08:41.622Z] ----------------------------------------------------------------------
+[debug] [2023-03-05T12:08:41.624Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\nabil\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-03-05T12:08:41.625Z] CLI Version:   11.24.0
+[debug] [2023-03-05T12:08:41.625Z] Platform:      win32
+[debug] [2023-03-05T12:08:41.625Z] Node Version:  v18.13.0
+[debug] [2023-03-05T12:08:41.626Z] Time:          Sun Mar 05 2023 13:08:41 GMT+0100 (غرينتش+01:00)
+[debug] [2023-03-05T12:08:41.627Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-05T12:08:41.637Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-05T12:08:41.638Z] > authorizing via signed-in user (nabil.aitnacer@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\nabil\Documents\Nodejs-Workspace\firebase_hosting
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-03-05T12:08:48.230Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2023-03-05T12:08:48.979Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2023-03-05T12:08:48.980Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project youtube-api-sweet (youtube-api-sweet) 
+[info] 
+=== Database Setup
+[info] i  database: ensuring required API firebasedatabase.googleapis.com is enabled... 
+[debug] [2023-03-05T12:08:50.799Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/firebasedatabase.googleapis.com [none]
+[debug] [2023-03-05T12:08:50.799Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/firebasedatabase.googleapis.com x-goog-quota-user=projects/youtube-api-sweet
+[debug] [2023-03-05T12:08:51.683Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/firebasedatabase.googleapis.com 200
+[debug] [2023-03-05T12:08:51.683Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/firebasedatabase.googleapis.com [omitted]
+[info] +  database: required API firebasedatabase.googleapis.com is enabled 
+[info] 
+[debug] [2023-03-05T12:08:51.687Z] >>> [apiv2][query] GET https://firebasedatabase.googleapis.com/v1beta/projects/youtube-api-sweet/locations/-/instances/youtube-api-sweet-default-rtdb [none]
+[debug] [2023-03-05T12:08:52.008Z] <<< [apiv2][status] GET https://firebasedatabase.googleapis.com/v1beta/projects/youtube-api-sweet/locations/-/instances/youtube-api-sweet-default-rtdb 200
+[debug] [2023-03-05T12:08:52.009Z] <<< [apiv2][body] GET https://firebasedatabase.googleapis.com/v1beta/projects/youtube-api-sweet/locations/-/instances/youtube-api-sweet-default-rtdb {"name":"projects/230743171611/locations/europe-west1/instances/youtube-api-sweet-default-rtdb","project":"projects/230743171611","databaseUrl":"https://youtube-api-sweet-default-rtdb.europe-west1.firebasedatabase.app","type":"DEFAULT_DATABASE","state":"ACTIVE"}
+[info] 
+[info] Firebase Realtime Database Security Rules allow you to define how your data should be
+[info] structured and when your data can be read from and written to.
+[info] 
+[debug] [2023-03-05T12:08:55.559Z] >>> [apiv2][query] GET https://youtube-api-sweet-default-rtdb.europe-west1.firebasedatabase.app/.settings/rules.json [none]
+[debug] [2023-03-05T12:08:55.762Z] <<< [apiv2][status] GET https://youtube-api-sweet-default-rtdb.europe-west1.firebasedatabase.app/.settings/rules.json 200
+[debug] [2023-03-05T12:08:55.763Z] <<< [apiv2][body] GET https://youtube-api-sweet-default-rtdb.europe-west1.firebasedatabase.app/.settings/rules.json [stream]
+[info] +  Database Rules for youtube-api-sweet-default-rtdb have been written to database.rules.json. 
+[info] Future modifications to database.rules.json will update Realtime Database Security Rules when you run
+[info] firebase deploy.
+[info] 
+=== Firestore Setup
+[debug] [2023-03-05T12:08:55.772Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/firestore.googleapis.com [none]
+[debug] [2023-03-05T12:08:55.772Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/firestore.googleapis.com x-goog-quota-user=projects/youtube-api-sweet
+[debug] [2023-03-05T12:08:56.641Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/firestore.googleapis.com 200
+[debug] [2023-03-05T12:08:56.641Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/firestore.googleapis.com [omitted]
+[debug] [2023-03-05T12:08:56.642Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/youtube-api-sweet/databases/(default) [none]
+[debug] [2023-03-05T12:08:56.932Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/youtube-api-sweet/databases/(default) 200
+[debug] [2023-03-05T12:08:56.932Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/youtube-api-sweet/databases/(default) {"name":"projects/youtube-api-sweet/databases/(default)","uid":"d4ee239f-fcd5-4b6c-862d-2446a9ac4e0a","createTime":"2023-03-05T11:52:09.359104Z","updateTime":"2023-03-05T11:52:09.359104Z","locationId":"eur3","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","appEngineIntegrationMode":"DISABLED","keyPrefix":"e","etag":"IMub0NTgxP0CMOvTwcvfxP0C"}
+[debug] [2023-03-05T12:08:56.933Z] database_type: FIRESTORE_NATIVE
+[debug] [2023-03-05T12:08:56.933Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-05T12:08:56.934Z] > authorizing via signed-in user (nabil.aitnacer@gmail.com)
+[debug] [2023-03-05T12:08:56.934Z] [iam] checking project youtube-api-sweet for permissions ["firebase.projects.get"]
+[debug] [2023-03-05T12:08:56.937Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/youtube-api-sweet:testIamPermissions [none]
+[debug] [2023-03-05T12:08:56.937Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/youtube-api-sweet:testIamPermissions x-goog-quota-user=projects/youtube-api-sweet
+[debug] [2023-03-05T12:08:56.938Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/youtube-api-sweet:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-03-05T12:08:57.626Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/youtube-api-sweet:testIamPermissions 200
+[debug] [2023-03-05T12:08:57.626Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/youtube-api-sweet:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2023-03-05T12:08:59.454Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/youtube-api-sweet/releases pageSize=10&pageToken=
+[debug] [2023-03-05T12:08:59.751Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/youtube-api-sweet/releases 200
+[debug] [2023-03-05T12:08:59.751Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/youtube-api-sweet/releases {"releases":[{"name":"projects/youtube-api-sweet/releases/cloud.firestore","rulesetName":"projects/youtube-api-sweet/rulesets/32139f6e-af88-4b95-b430-86ec71ffdc83","createTime":"2023-03-05T11:52:13.606550Z","updateTime":"2023-03-05T11:52:13.606550Z"},{"name":"projects/youtube-api-sweet/releases/firebase.storage/youtube-api-sweet.appspot.com","rulesetName":"projects/youtube-api-sweet/rulesets/7e4fd3d5-0d76-41dd-b735-beebf6d699db","createTime":"2023-03-05T12:08:19.736727Z","updateTime":"2023-03-05T12:08:19.736727Z"}]}
+[debug] [2023-03-05T12:08:59.751Z] Found ruleset: projects/youtube-api-sweet/rulesets/32139f6e-af88-4b95-b430-86ec71ffdc83
+[debug] [2023-03-05T12:08:59.752Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/youtube-api-sweet/rulesets/32139f6e-af88-4b95-b430-86ec71ffdc83 [none]
+[debug] [2023-03-05T12:09:00.496Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/youtube-api-sweet/rulesets/32139f6e-af88-4b95-b430-86ec71ffdc83 200
+[debug] [2023-03-05T12:09:00.496Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/youtube-api-sweet/rulesets/32139f6e-af88-4b95-b430-86ec71ffdc83 [omitted]
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2023-03-05T12:09:02.535Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/youtube-api-sweet/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2023-03-05T12:09:02.537Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/youtube-api-sweet/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2023-03-05T12:09:02.837Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/youtube-api-sweet/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2023-03-05T12:09:02.837Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/youtube-api-sweet/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2023-03-05T12:09:02.838Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/youtube-api-sweet/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2023-03-05T12:09:02.838Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/youtube-api-sweet/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/youtube-api-sweet/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[info] 
+=== Functions Setup
+[debug] [2023-03-05T12:09:02.841Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-05T12:09:02.842Z] > authorizing via signed-in user (nabil.aitnacer@gmail.com)
+[debug] [2023-03-05T12:09:02.842Z] [iam] checking project youtube-api-sweet for permissions ["firebase.projects.get"]
+[debug] [2023-03-05T12:09:02.843Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/youtube-api-sweet:testIamPermissions [none]
+[debug] [2023-03-05T12:09:02.843Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/youtube-api-sweet:testIamPermissions x-goog-quota-user=projects/youtube-api-sweet
+[debug] [2023-03-05T12:09:02.843Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/youtube-api-sweet:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-03-05T12:09:03.537Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/youtube-api-sweet:testIamPermissions 200
+[debug] [2023-03-05T12:09:03.537Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/youtube-api-sweet:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-03-05T12:09:03.538Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/cloudfunctions.googleapis.com [none]
+[debug] [2023-03-05T12:09:03.538Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/youtube-api-sweet
+[debug] [2023-03-05T12:09:03.542Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/runtimeconfig.googleapis.com [none]
+[debug] [2023-03-05T12:09:03.542Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/youtube-api-sweet
+[debug] [2023-03-05T12:09:04.461Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/runtimeconfig.googleapis.com 200
+[debug] [2023-03-05T12:09:04.461Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2023-03-05T12:09:04.466Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/cloudfunctions.googleapis.com 200
+[debug] [2023-03-05T12:09:04.466Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/youtube-api-sweet/services/cloudfunctions.googleapis.com [omitted]
+[info] 
+Detected existing codebase(s): default
+
+[info] Let's create a new codebase for your functions.
+[info] A directory corresponding to the codebase will be created in your project
+[info] with sample code pre-configured.
+
+[info] See https://firebase.google.com/docs/functions/organize-functions for
+[info] more information on organizing your functions using codebases.
+
+[info] Functions can be deployed with firebase deploy.
+
+[error] Invalid codebase name. Codebase must be less than 64 characters and can contain only lowercase letters, numeric characters, underscores, and dashes.
+[info] +  Wrote youtube_sweet_mar/package.json 
+[info] +  Wrote youtube_sweet_mar/.eslintrc.js 
+[info] +  Wrote youtube_sweet_mar/index.js 
+[info] +  Wrote youtube_sweet_mar/.gitignore 
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2023-03-05T12:10:15.699Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2023-03-05T12:10:15.832Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2023-03-05T12:10:15.832Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"9.17.2","browserURL":"https://www.gstatic.com/firebasejs/9.17.2/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/9.17.2/firebase.tgz"},"live":{"version":"9.17","browserURL":"https://www.gstatic.com/firebasejs/live/9.17/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/9.17/firebase.tgz"},"components":{"analytics":"https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/9.17.2/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/9.17.2/firebase-auth/cordova.js","auth/react-native":"https://www.gstatic.com/firebasejs/9.17.2/firebase-auth/react-native.js","functions":"https://www.gstatic.com/firebasejs/9.17.2/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/9.17.2/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/9.17.2/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/9.17.2/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/9.17.2/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/9.17.2/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/9.17.2/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js","firestore.memory":"https://www.gstatic.com/firebasejs/9.17.2/firebase-firestore.memory.js"}}
+[info] +  Wrote public/index.html 
+[info] 
+=== Storage Setup
+[info] 
+[info] Firebase Storage Security Rules allow you to define how and when to allow
+[info] uploads and downloads. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[info] +  Wrote storage.rules 
+[info] 
+=== Emulators Setup
+[info] i  firestore: downloading cloud-firestore-emulator-v1.16.0.jar... {"metadata":{"emulator":{"name":"firestore"},"message":"downloading cloud-firestore-emulator-v1.16.0.jar..."}}
+[debug] [2023-03-05T12:11:18.105Z] >>> [apiv2][query] GET https://storage.googleapis.com/firebase-preview-drop/emulator/cloud-firestore-emulator-v1.16.0.jar 
+[debug] [2023-03-05T12:11:18.572Z] <<< [apiv2][status] GET https://storage.googleapis.com/firebase-preview-drop/emulator/cloud-firestore-emulator-v1.16.0.jar 200
+[debug] [2023-03-05T12:11:18.572Z] <<< [apiv2][body] GET https://storage.googleapis.com/firebase-preview-drop/emulator/cloud-firestore-emulator-v1.16.0.jar [stream]
+[info] i  database: downloading firebase-database-emulator-v4.11.0.jar... {"metadata":{"emulator":{"name":"database"},"message":"downloading firebase-database-emulator-v4.11.0.jar..."}}
+[debug] [2023-03-05T12:11:29.656Z] >>> [apiv2][query] GET https://storage.googleapis.com/firebase-preview-drop/emulator/firebase-database-emulator-v4.11.0.jar 
+[debug] [2023-03-05T12:11:30.159Z] <<< [apiv2][status] GET https://storage.googleapis.com/firebase-preview-drop/emulator/firebase-database-emulator-v4.11.0.jar 200
+[debug] [2023-03-05T12:11:30.160Z] <<< [apiv2][body] GET https://storage.googleapis.com/firebase-preview-drop/emulator/firebase-database-emulator-v4.11.0.jar [stream]
+[info] i  pubsub: downloading pubsub-emulator-0.7.1.zip... {"metadata":{"emulator":{"name":"pubsub"},"message":"downloading pubsub-emulator-0.7.1.zip..."}}
+[debug] [2023-03-05T12:11:36.262Z] >>> [apiv2][query] GET https://storage.googleapis.com/firebase-preview-drop/emulator/pubsub-emulator-0.7.1.zip 
+[debug] [2023-03-05T12:11:36.769Z] <<< [apiv2][status] GET https://storage.googleapis.com/firebase-preview-drop/emulator/pubsub-emulator-0.7.1.zip 200
+[debug] [2023-03-05T12:11:36.769Z] <<< [apiv2][body] GET https://storage.googleapis.com/firebase-preview-drop/emulator/pubsub-emulator-0.7.1.zip [stream]
+[info] i  storage: downloading cloud-storage-rules-runtime-v1.1.3.jar... {"metadata":{"emulator":{"name":"storage"},"message":"downloading cloud-storage-rules-runtime-v1.1.3.jar..."}}
+[debug] [2023-03-05T12:11:46.611Z] >>> [apiv2][query] GET https://storage.googleapis.com/firebase-preview-drop/emulator/cloud-storage-rules-runtime-v1.1.3.jar 
+[debug] [2023-03-05T12:11:47.071Z] <<< [apiv2][status] GET https://storage.googleapis.com/firebase-preview-drop/emulator/cloud-storage-rules-runtime-v1.1.3.jar 200
+[debug] [2023-03-05T12:11:47.071Z] <<< [apiv2][body] GET https://storage.googleapis.com/firebase-preview-drop/emulator/cloud-storage-rules-runtime-v1.1.3.jar [stream]
+[info] i  ui: downloading ui-v1.11.4.zip... {"metadata":{"emulator":{"name":"ui"},"message":"downloading ui-v1.11.4.zip..."}}
+[debug] [2023-03-05T12:11:56.167Z] >>> [apiv2][query] GET https://storage.googleapis.com/firebase-preview-drop/emulator/ui-v1.11.4.zip 
+[info] 
+=== Remoteconfig Setup
+[debug] [2023-03-05T12:11:56.421Z] <<< [apiv2][status] GET https://storage.googleapis.com/firebase-preview-drop/emulator/ui-v1.11.4.zip 200
+[debug] [2023-03-05T12:11:56.421Z] <<< [apiv2][body] GET https://storage.googleapis.com/firebase-preview-drop/emulator/ui-v1.11.4.zip [stream]

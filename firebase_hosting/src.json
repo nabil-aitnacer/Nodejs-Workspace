@@ -1,0 +1,154 @@
+{
+    "newspapers": [
+    {
+    "id": 1,
+    "name_src": "جريدة الرياض",
+    "url_src": "https://www.alriyadh.com/"
+    },
+    {
+    "id": 2,
+    "name_src": "جريدة عكاظ",
+    "url_src": "https://www.okaz.com.sa/"
+    },
+    {
+    "id": 3,
+    "name_src": "جريدة المدينة",
+    "url_src": "https://www.al-madina.com/"
+    },
+    {
+    "id": 4,
+    "name_src": "جريدة الجزيرة",
+    "url_src": "https://www.al-jazirah.com/"
+    },
+    {
+    "id": 5,
+    "name_src": "جريدة الشرق",
+    "url_src": "https://www.asharq.com/"
+    },
+    {
+    "id": 6,
+    "name_src": "جريدة الوطن",
+    "url_src": "https://www.alwatan.com.sa/"
+    },
+    {
+    "id": 7,
+    "name_src": "جريدة المستقبل",
+    "url_src": "https://www.al-mustaqbal.net/"
+    },
+    {
+    "id": 8,
+    "name_src": "جريدة سبق",
+    "url_src": "https://sabq.org/"
+    },
+    {
+    "id": 9,
+    "name_src": "جريدة مكة",
+    "url_src": "https://makkahnewspaper.com/"
+    },
+    {
+    "id": 10,
+    "name_src": "جريدة المدينة المنورة",
+    "url_src": "https://www.al-madina.com/"
+    },
+    {
+    "id": 11,
+    "name_src": "جريدة النادي",
+    "url_src": "https://www.alnadimg.com/"
+    },
+    {
+    "id": 12,
+    "name_src": "جريدة البلاد",
+    "url_src": "https://www.albayan.com.sa/"
+    },
+    {
+    "id": 13,
+    "name_src": "جريدة الحياة",
+    "url_src": "https://www.alhayat.com/"
+    },
+    {
+    "id": 14,
+    "name_src": "جريدة الراية",
+    "url_src": "https://www.alraya.com/"
+    },
+    {
+    "id": 15,
+    "name_src": "جريدة السعودية",
+    "url_src": "https://www.alriyadh.com/category/saudia"
+    },
+    {
+    "id": 16,
+    "name_src": "جريدة المجلس",
+    "url_src": "https://almajlis.net/"
+    },
+    {
+    "id": 17,
+    "name_src": "جريدة المناطق",
+    "url_src": "https://al-mnatiq.com/"
+    },
+    {
+    "id": 18,
+    "name_src": "جريدة الوئام",
+    "url_src": "https://www.alweeam.com.sa/"
+    },
+    {
+    "id": 19,
+    "name_src": "جريدة الحرية",
+    "url_src": "https://www.alhurra.com.sa/"
+    },
+    {
+    "id": 20,
+    "name_src": "جريدة اليوم",
+    "url_src": "https://www.alyaum.com/"
+    },
+    {
+    "id": 21,
+    "name_src": "جريدة الحدث",
+    "url_src": "https://www.alhadath.net/"
+    },
+    {
+    "id": 22,
+    "name_src": "جريدة الرياضية",
+    "url_src": "https://www.alarabiya.net/sport/saudi-sport/"
+    },
+    {
+    "id": 23,
+    "name_src": "جريدة السفير",
+    "url_src": "https://www.alsafir.com/"
+    },
+    {
+    "id": 24,
+    "name_src": "جريدة الشمس",
+    "url_src": "https://alshams.info/"
+    },
+    {
+    "id": 25,
+    "name_src": "جريدة الجزيرة الرياضية",
+    "url_src": "https://www.beinsports.com/ar/saudi-arabia/news/"
+    },
+    {
+    "id": 26,
+    "name_src": "جريدة اليوم السابع",
+    "url_src": "https://www.youm7.com/"
+    },
+    {
+    "id": 27,
+    "name_src": "جريدة البيان",
+    "url_src": "https://www.albayan.ae/"
+    },
+    {
+    "id": 28,
+    "name_src": "جريدة عاجل",
+    "url_src": "https://www.ajel.sa/"
+    },
+    {
+    "id": 29,
+    "name_src": "جريدة عين اليوم",
+    "url_src": "https://www.ainalyaqeen.com/"
+    },
+    {
+    "id": 30,
+    "name_src": "جريدة تواصل",
+    "url_src": "https://twasul.info/"
+    }
+    ]
+    }
