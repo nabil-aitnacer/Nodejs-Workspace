@@ -1,4 +1,4 @@
 const sa_controller =  require('./controller/south_africa/sa.controller')
 
 
-sa_controller.scrapeNews24(); 
+sa_controller.scrapeTimeslive(); 

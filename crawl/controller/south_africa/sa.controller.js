@@ -115,4 +115,101 @@ module.exports = {
 
     await browser.close();
   },
+  scrapeTimeslive: async () => {
+    const browser = await puppeteer.launch({ headless: false });
+    let result = [];
+    
+    const page = await browser.newPage();
+    await page.goto('https://www.timeslive.co.za/news/south-africa/', { waitUntil: 'networkidle2' });
+
+    //TODO for this web site there is two sprite container 
+    //first one is row 
+    //.container-fluid.section 
+    // div:nth-child(1) this is container for article 
+    //.find('a.link[aria-label="article link"]').get(0)
+    //second is 
+    
+
+    // Wait for the article items to be loaded on the page
+    await page.waitForSelector('a.link[aria-label="article link"]');
+
+    const elements = await page.$$('a.link[aria-label="article link"]');
+    console.log(elements.length);
+/*
+    for (let index = 0; index < elements.length; index++) {
+      const element = elements[index];
+
+      try {
+        const primeTrialText = await element.$eval('div.article-item__prime-trial', (div) =>
+          div.textContent.trim()
+        );
+
+        continue;
+      } catch (error) {}
+
+      const date = await element.$eval('.article-item__date', (p) => p.textContent.trim());
+      const url = await element.$eval('a.article-item--url', (anchor) => anchor.href);
+      if (regex.test(url)) {
+        console.log('URL starts with https://www.news24.com/news24/');
+      } else {
+        console.log(url);
+        console.log('URL does not start with https://www.news24.com/news24/');
+        continue;
+      }
+      const title = await element.$eval('.article-item__title', (span) => span.textContent.trim());
+      const articlePage = await browser.newPage();
+      await articlePage.goto(url, { waitUntil: 'networkidle2' });
+      const paragraphs = await articlePage.$$eval('.article__body.NewsArticle > p:nth-child(-n+2)', (paragraphs) =>
+        paragraphs.map((p) => p.textContent.trim())
+      );
+      let imageUrl = '';
+
+      try {
+        imageUrl = await articlePage.$eval('.article__featured-image.NewsArticle img', (img) => img.src);
+      } catch (error) {
+        try {
+          const divElement = await articlePage.$('.vjs-poster');
+          const backgroundImageStyle = await divElement.evaluate((el) => el.style.backgroundImage);
+          imageUrl = backgroundImageStyle.match(/url\("(.+)"\)/)[1];
+          console.log(imageUrl);
+        } catch (innerError) {
+          console.log(title);
+          console.log(innerError.message);
+        }
+      }
+
+      let article = {
+        source: {
+          name: 'News24',
+          url: 'https://www.news24.com',
+          icon_url: 'https://scripts.24.co.za/img/sites/news24.png',
+        },
+        title: title,
+        short_description: paragraphs,
+
+        article_url: url,
+        article_image_src: imageUrl,
+        publishedAt: '2023-05-26T15:00:24Z',
+      };
+
+      result.push(article);
+      console.log(index);
+
+      await articlePage.close();
+    } // end of loop
+
+    const jsonContent = JSON.stringify(result, null, 2);
+    const outputFilePath = path.join(__dirname, `news24_${Date.now()}.json`);
+
+    fs.writeFile(outputFilePath, jsonContent, 'utf8', (err) => {
+      if (err) {
+        console.error('Error writing JSON file:', err);
+      } else {
+        console.log('JSON file has been written successfully.');
+      }
+    });
+
+    */
+  },
+ 
 };
