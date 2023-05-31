@@ -54,7 +54,7 @@ module.exports = {
       const date = await element.$eval('.article-item__date', (p) => p.textContent.trim());
       const url = await element.$eval('a.article-item--url', (anchor) => anchor.href);
       if (regex.test(url)) {
-        console.log('URL starts with https://www.news24.com/news24/');
+       
       } else {
         console.log(url);
         console.log('URL does not start with https://www.news24.com/news24/');
@@ -63,11 +63,11 @@ module.exports = {
       const title = await element.$eval('.article-item__title', (span) => span.textContent.trim());
       const articlePage = await browser.newPage();
       await articlePage.goto(url, { waitUntil: 'networkidle2' });
-      const paragraphs = await articlePage.$$eval('.article__body.NewsArticle > p:nth-child(-n+2)', (paragraphs) =>
+      const paragraphs = await articlePage.$$eval('.article__body.NewsArticle > p:nth-of-type(-n+2)', (paragraphs) =>
         paragraphs.map((p) => p.textContent.trim())
       );
       let imageUrl = '';
-
+    
       try {
         imageUrl = await articlePage.$eval('.article__featured-image.NewsArticle img', (img) => img.src);
       } catch (error) {
@@ -101,7 +101,7 @@ module.exports = {
 
       await articlePage.close();
     } // end of loop
-
+  
     const jsonContent = JSON.stringify(result, null, 2);
     const outputFilePath = path.join(__dirname, `news24_${Date.now()}.json`);
 
@@ -113,7 +113,7 @@ module.exports = {
       }
     });
 
-    await browser.close();
+    
   },
   scrapeTimeslive: async () => {
     const browser = await puppeteer.launch({ headless: false });
