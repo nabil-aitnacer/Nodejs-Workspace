@@ -7,18 +7,18 @@ const Mongo_db_Url = "mongodb+srv://root-db:CDD8i9he5yJeMCfE@cluster0.ihpy6fx.mo
 //TODO complet this code so mongose connect and can insert source
 // Now you can use the Source and Article models in your application
 // For example, you can create a new source
-const newSource = new Source({
-    name: "News24",
-    url: "https://www.news24.com",
-    icon_url: "https://scripts.24.co.za/img/sites/news24.png",
-  });
+// const newSource = new Source({
+//     name: "News24",
+//     url: "https://www.news24.com",
+//     icon_url: "https://scripts.24.co.za/img/sites/news24.png",
+//   });
   
-  // Save the new source to the database
-  newSource.save()
-    .then((savedSource) => {
-      console.log("Saved source:", savedSource);
-    })
-    .catch((error) => {
-      console.error("Error saving source:", error);
-    });
-sa_controller.scrapeNews24(); 
+//   // Save the new source to the database
+//   newSource.save()
+//     .then((savedSource) => {
+//       console.log("Saved source:", savedSource);
+//     })
+//     .catch((error) => {
+//       console.error("Error saving source:", error);
+//     });
+sa_controller.scrapeTimeslive(); 
