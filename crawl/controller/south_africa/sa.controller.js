@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+<<<<<<< Updated upstream
 const fs = require("fs");
 
 const path = require("path");
@@ -29,10 +30,17 @@ const article = {
   ],
 };
 
+=======
+
+ const {  Article } = require("../../DATA/article.modele");
+
+
+>>>>>>> Stashed changes
 module.exports = {
   scrapeNews24: async () => {
     const browser = await puppeteer.launch({ headless: false });
     let result = [];
+    
     const regex = /^https:\/\/www\.news24\.com\/news24\//;
     const page = await browser.newPage();
     await page.goto("https://www.news24.com/news24/southafrica", {
@@ -47,7 +55,7 @@ module.exports = {
 
     for (let index = 0; index < elements.length; index++) {
       const element = elements[index];
-
+      let _islive=false;
       try {
         const primeTrialText = await element.$eval(
           "div.article-item__prime-trial",
@@ -57,6 +65,7 @@ module.exports = {
         continue;
       } catch (error) {}
 
+<<<<<<< Updated upstream
       const date = await element.$eval(".article-item__date", (p) =>
         p.textContent.trim()
       );
@@ -64,8 +73,14 @@ module.exports = {
         "a.article-item--url",
         (anchor) => anchor.href
       );
+=======
+
+      const date = await element.$eval('.article-item__date', (p) => p.textContent.trim());
+      const url = await element.$eval('a.article-item--url', (anchor) => anchor.href);
+>>>>>>> Stashed changes
       if (regex.test(url)) {
       } else {
+<<<<<<< Updated upstream
         console.log(url);
         console.log("URL does not start with https://www.news24.com/news24/");
         continue;
@@ -81,6 +96,29 @@ module.exports = {
       );
       let imageUrl = "";
 
+=======
+       // console.log(url);
+       // console.log('URL does not start with https://www.news24.com/news24/');
+        continue;
+      }
+      const title = await element.$eval('.article-item__title', (span) => span.textContent.trim());
+      const articlePage = await browser.newPage();
+      await articlePage.goto(url, { waitUntil: 'networkidle2' });
+      try {
+        const live = await element.$eval('.article-item__live-title', (div) =>
+        div.textContent.trim());
+      if(live === "LIVE"){
+        _islive = true;
+      }
+      } catch (error) {
+       
+      }
+      const paragraphs = await articlePage.$$eval('.article__body.NewsArticle > p:nth-of-type(-n+2)', (paragraphs) =>
+        paragraphs.map((p) => p.textContent.trim())
+      );
+      let imageUrl = '';
+      
+>>>>>>> Stashed changes
       try {
         imageUrl = await articlePage.$eval(
           ".article__featured-image.NewsArticle img",
@@ -100,25 +138,45 @@ module.exports = {
         }
       }
 
+<<<<<<< Updated upstream
       let article = {
         source: {
           name: "News24",
           url: "https://www.news24.com",
           icon_url: "https://scripts.24.co.za/img/sites/news24.png",
         },
+=======
+
+      let article = new Article({
+        source: "6478a3cd35b709046ab5237e",
+>>>>>>> Stashed changes
         title: title,
         short_description: paragraphs,
 
         article_url: url,
         article_image_src: imageUrl,
+<<<<<<< Updated upstream
         publishedAt: "2023-05-26T15:00:24Z",
       };
+=======
+        islive:_islive,
+        publishedAt: '2023-05-26T15:00:24Z',
+>>>>>>> Stashed changes
 
-      result.push(article);
-      console.log(index);
+      });
 
-      await articlePage.close();
+      article.save()
+      .then((savedSource) => {
+        console.log(index);
+      })
+      .catch((error) => {
+        console.error("Error saving source:", error);
+      });
+      
+      
+      
     } // end of loop
+<<<<<<< Updated upstream
 
     const jsonContent = JSON.stringify(result, null, 2);
     const outputFilePath = path.join(__dirname, `news24_${Date.now()}.json`);
@@ -130,6 +188,21 @@ module.exports = {
         console.log("JSON file has been written successfully.");
       }
     });
+=======
+    await page.close();
+    // const jsonContent = JSON.stringify(result, null, 2);
+    // const outputFilePath = path.join(__dirname, `news24_${Date.now()}.json`);
+
+    // fs.writeFile(outputFilePath, jsonContent, 'utf8', (err) => {
+    //   if (err) {
+    //     console.error('Error writing JSON file:', err);
+    //   } else {
+    //     console.log('JSON file has been written successfully.');
+    //   }
+    // });
+
+    
+>>>>>>> Stashed changes
   },
   scrapeTimeslive: async () => {
     const browser = await puppeteer.launch({ headless: true });
@@ -154,9 +227,17 @@ module.exports = {
       const elements = document.querySelectorAll("a.link");
       const uniqueSet = new Set();
 
+<<<<<<< Updated upstream
       elements.forEach((element) => {
         uniqueSet.add(element.href);
       });
+=======
+      try {
+        const primeTrialText = await element.$eval('div.article-item__prime-trial', (div) =>
+          div.textContent.trim()
+        );
+        ++++++++++++++++++++++
+>>>>>>> Stashed changes
 
       return Array.from(uniqueSet);
     });
