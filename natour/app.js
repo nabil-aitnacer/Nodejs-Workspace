@@ -1,95 +1,78 @@
 const express = require('express');
-const dotenv = require('dotenv');
-const appError =require('./Utils/AppError')
-const ratteLimit = require('express-rate-limit')
-dotenv.config({ path: './config.env' });
-const errorController = require('./controllers/error.controller')
-const helmet =require('helmet')
-const sanitize = require('express-mongo-sanitize')
-const xss =require('xss-clean')
-const hpp =require('hpp')
-const DB = process.env.DATABASE.replace(
-  '<PASSWORD>',
-  process.env.DATABASE_PASSWORD
-);
-const path = require('path');
-const logger = require('morgan');
-const mongoose = require('mongoose');
-//Get the default connection
-const db = mongoose.connection;
+const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const hpp = require('hpp');
 
+const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controllers/errorController');
+const tourRouter = require('./routes/tourRoutes');
+const userRouter = require('./routes/userRoutes');
+const reviewRouter = require('./routes/reviewRoutes');
 
-
-//Set up default mongoose connection
-mongoose.set('strictQuery', false);
-mongoose.connect(DB, { useNewUrlParser: true });
-
-//Bind connection to error event (to get notification of connection errors)
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-const tourRouter = require('./routers/tour.router');
-const userRouter = require('./routers/user.router');
-const reviewRouter = require('./routers/review.router')
-const AppError = require('./Utils/AppError');
 const app = express();
-//this is for header securet
-app.use(helmet())
-// limit request by 1 hour for ip 
-const limiter = ratteLimit({
-  max:100,
-  windowMs:60*60*1000,
-  message:"Too Many request from this IP,please try again in an hour"
-})
 
-//MiddleWare
+// 1) GLOBAL MIDDLEWARES
+// Set security HTTP headers
+app.use(helmet());
+
+// Development logging
 if (process.env.NODE_ENV === 'development') {
-  app.use(logger('dev'));
+  app.use(morgan('dev'));
 }
-const port = process.env.PORT || 3000;
 
-//set reques limit
+// Limit requests from same API
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: 'Too many requests from this IP, please try again in an hour!'
+});
+app.use('/api', limiter);
 
-//minimize json responce to only 10kb
-app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+// Body parser, reading data from body into req.body
+app.use(express.json({ limit: '10kb' }));
 
-// this to prevent no sql injection
-app.use(sanitize())
-//this prevet html injection
-app.use(xss())
-//Routers
+// Data sanitization against NoSQL query injection
+app.use(mongoSanitize());
 
+// Data sanitization against XSS
+app.use(xss());
+
+// Prevent parameter pollution
+app.use(
+  hpp({
+    whitelist: [
+      'duration',
+      'ratingsQuantity',
+      'ratingsAverage',
+      'maxGroupSize',
+      'difficulty',
+      'price'
+    ]
+  })
+);
+
+// Serving static files
+app.use(express.static(`${__dirname}/public`));
+
+// Test middleware
+app.use((req, res, next) => {
+  req.requestTime = new Date().toISOString();
+  // console.log(req.headers);
+  next();
+});
+
+// 3) ROUTES
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
 
-<<<<<<< HEAD
-//no matter witch request post or get or delete ....
-=======
-//this for query paramter to not get duplicate field and only from whitelise
-app.use(hpp({
-
-  whitelist:[
-    'duration',
-    'ratingQuantity',
-    'ratingsAverage',
-    'maxGroupSize',
-    'difficulty',
-    'price'
-  ]
-}))
-//no matter wich request post or get or delete ....
->>>>>>> b585a040b9b38663b4cf185ec05804bb340199f4
-app.all('*',(req,res,next)=>{
-
-  const err = new Error(`No page found for this link ${req.originalUrl}`)
-  err.statusCode = 404;
-  err.status="fail"
-  next(new AppError())
-})
-app.use(errorController.globalHandlerError);
-
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
-//npm install eslint eslint-config-airbnb eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y  eslint-plugin-node eslint-plugin-prettier eslint-plugin-react prettier --save-dev
+
+app.use(globalErrorHandler);
+
+module.exports = app;

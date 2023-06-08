@@ -1,33 +1,31 @@
-const AppError = require('../Utils/AppError');
-const { inspect } = require('util');
-const _=require('lodash')
-const handleCastErrorDB = err => {
+const AppError = require('./../utils/appError');
 
+const handleCastErrorDB = err => {
   const message = `Invalid ${err.path}: ${err.value}.`;
   return new AppError(message, 400);
 };
 
 const handleDuplicateFieldsDB = err => {
-  console.log(err["message"]);
-  const value = err["message"].match(/(["'])(\\?.)*?\1/)[0];
+  const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
   console.log(value);
 
   const message = `Duplicate field value: ${value}. Please use another value!`;
   return new AppError(message, 400);
 };
-const handleValidationErrorDB = err => {
-//  const errors = Object.values(err).map(el => el.message);
 
-//  const message = `Invalid input data. ${errors.join('. ')}`;
-   const message = `Invalid input data. ${err.message}`;
+const handleValidationErrorDB = err => {
+  const errors = Object.values(err.errors).map(el => el.message);
+
+  const message = `Invalid input data. ${errors.join('. ')}`;
   return new AppError(message, 400);
 };
-const handleJWTTokenError = err => {
 
+const handleJWTError = () =>
+  new AppError('Invalid token. Please log in again!', 401);
 
-  const message = `Please Log in `;
-  return new AppError(message, 401);
-};
+const handleJWTExpiredError = () =>
+  new AppError('Your token has expired! Please log in again.', 401);
+
 const sendErrorDev = (err, res) => {
   res.status(err.statusCode).json({
     status: err.status,
@@ -48,18 +46,18 @@ const sendErrorProd = (err, res) => {
     // Programming or other unknown error: don't leak error details
   } else {
     // 1) Log error
-  //  console.error('ERROR 💥', err);
+    console.error('ERROR 💥', err);
 
     // 2) Send generic message
     res.status(500).json({
       status: 'error',
-      message: err.message
+      message: 'Something went very wrong!'
     });
   }
 };
 
-module.exports.globalHandlerError = (err, req, res, next) => {
-  
+module.exports = (err, req, res, next) => {
+  // console.log(err.stack);
 
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
@@ -67,23 +65,15 @@ module.exports.globalHandlerError = (err, req, res, next) => {
   if (process.env.NODE_ENV === 'development') {
     sendErrorDev(err, res);
   } else if (process.env.NODE_ENV === 'production') {
+    let error = { ...err };
 
-
-
-let error =cloneError(err)
-
-    if (err.name === 'CastError') error = handleCastErrorDB(error);
-    if (err.code === 11000) error = handleDuplicateFieldsDB(error);
-    if (err.name === 'ValidationError')
+    if (error.name === 'CastError') error = handleCastErrorDB(error);
+    if (error.code === 11000) error = handleDuplicateFieldsDB(error);
+    if (error.name === 'ValidationError')
       error = handleValidationErrorDB(error);
-    if(err.name === 'JsonWebTokenError') error = handleJWTTokenError(error)
+    if (error.name === 'JsonWebTokenError') error = handleJWTError();
+    if (error.name === 'TokenExpiredError') error = handleJWTExpiredError();
 
-  console.log(error)
     sendErrorProd(error, res);
   }
 };
-function cloneError(error) {
-  const clonedError = new AppError(error.message,error.statusCode);
-  Object.assign(clonedError, error);
-  return clonedError;
-}

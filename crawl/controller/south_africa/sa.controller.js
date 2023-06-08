@@ -364,9 +364,9 @@ async function scrapesabcnews() {
 }
 module.exports = {
   saCrawl: async () => {
-    await scrapeNews24();
-    await scrapeTimeslive();
-     await scrapeTheSouthAfrican();
+    // await scrapeNews24();
+    // await scrapeTimeslive();
+    //  await scrapeTheSouthAfrican();
     await scrapesabcnews();
   },
 };
