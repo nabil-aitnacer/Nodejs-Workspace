@@ -34,6 +34,9 @@ const articleSchema = new mongoose.Schema({
   publishedAt: {
     type: String,
   },
+  isLive:{
+    type:Boolean
+  },
   source: {
     type: mongoose.Schema.ObjectId,
     ref: "source",

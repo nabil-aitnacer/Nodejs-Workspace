@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+<<<<<<< Updated upstream
 const fs = require("fs");
 
 const path = require("path");
@@ -29,14 +30,15 @@ const article = {
   ],
 };
 
-async function scrapeNews24() {
-  const browser = await puppeteer.launch({ headless: true });
-  let result = [];
-  const regex = /^https:\/\/www\.news24\.com\/news24\//;
-  const page = await browser.newPage();
-  await page.goto("https://www.news24.com/news24/southafrica", {
-    waitUntil: "networkidle2",
-  });
+module.exports = {
+  scrapeNews24: async () => {
+    const browser = await puppeteer.launch({ headless: false });
+    let result = [];
+    const regex = /^https:\/\/www\.news24\.com\/news24\//;
+    const page = await browser.newPage();
+    await page.goto("https://www.news24.com/news24/southafrica", {
+      waitUntil: "networkidle2",
+    });
 
   // Wait for the article items to be loaded on the page
   await page.waitForSelector(".article-item");
@@ -44,97 +46,96 @@ async function scrapeNews24() {
   const elements = await page.$$(".article-item");
   console.log(elements.length);
 
-  for (let index = 0; index < elements.length; index++) {
-    const element = elements[index];
+    for (let index = 0; index < elements.length; index++) {
+      const element = elements[index];
 
-    try {
-      const primeTrialText = await element.$eval(
-        "div.article-item__prime-trial",
-        (div) => div.textContent.trim()
-      );
+      try {
+        const primeTrialText = await element.$eval(
+          "div.article-item__prime-trial",
+          (div) => div.textContent.trim()
+        );
 
       continue;
     } catch (error) {}
 
-    const date = await element.$eval(".article-item__date", (p) =>
-      p.textContent.trim()
-    );
-    const url = await element.$eval(
-      "a.article-item--url",
-      (anchor) => anchor.href
-    );
-    if (regex.test(url)) {
-    } else {
-      console.log(url);
-      console.log("URL does not start with https://www.news24.com/news24/");
-      continue;
-    }
-    const title = await element.$eval(".article-item__title", (span) =>
-      span.textContent.trim()
-    );
-    const articlePage = await browser.newPage();
-    await articlePage.goto(url, { waitUntil: "networkidle2" });
-    const paragraphs = await articlePage.$$eval(
-      ".article__body.NewsArticle > p:nth-of-type(-n+2)",
-      (paragraphs) => paragraphs.map((p) => p.textContent.trim())
-    );
-    let imageUrl = "";
-
-    try {
-      imageUrl = await articlePage.$eval(
-        ".article__featured-image.NewsArticle img",
-        (img) => img.src
+      const date = await element.$eval(".article-item__date", (p) =>
+        p.textContent.trim()
       );
-    } catch (error) {
-      try {
-        const divElement = await articlePage.$(".vjs-poster");
-        const backgroundImageStyle = await divElement.evaluate(
-          (el) => el.style.backgroundImage
-        );
-        imageUrl = backgroundImageStyle.match(/url\("(.+)"\)/)[1];
-        console.log(imageUrl);
-      } catch (innerError) {
-        console.log(title);
-        console.log(innerError.message);
+      const url = await element.$eval(
+        "a.article-item--url",
+        (anchor) => anchor.href
+      );
+      if (regex.test(url)) {
+      } else {
+        console.log(url);
+        console.log("URL does not start with https://www.news24.com/news24/");
+        continue;
       }
-    }
+      const title = await element.$eval(".article-item__title", (span) =>
+        span.textContent.trim()
+      );
+      const articlePage = await browser.newPage();
+      await articlePage.goto(url, { waitUntil: "networkidle2" });
+      const paragraphs = await articlePage.$$eval(
+        ".article__body.NewsArticle > p:nth-of-type(-n+2)",
+        (paragraphs) => paragraphs.map((p) => p.textContent.trim())
+      );
+      let imageUrl = "";
 
-    let article = {
-      source: {
-        name: "News24",
-        url: "https://www.news24.com",
-        icon_url: "https://scripts.24.co.za/img/sites/news24.png",
-      },
-      title: title,
-      short_description: paragraphs,
+      try {
+        imageUrl = await articlePage.$eval(
+          ".article__featured-image.NewsArticle img",
+          (img) => img.src
+        );
+      } catch (error) {
+        try {
+          const divElement = await articlePage.$(".vjs-poster");
+          const backgroundImageStyle = await divElement.evaluate(
+            (el) => el.style.backgroundImage
+          );
+          imageUrl = backgroundImageStyle.match(/url\("(.+)"\)/)[1];
+          console.log(imageUrl);
+        } catch (innerError) {
+          console.log(title);
+          console.log(innerError.message);
+        }
+      }
 
-      article_url: url,
-      article_image_src: imageUrl,
-      publishedAt: "2023-05-26T15:00:24Z",
-    };
+      let article = {
+        source: {
+          name: "News24",
+          url: "https://www.news24.com",
+          icon_url: "https://scripts.24.co.za/img/sites/news24.png",
+        },
+        title: title,
+        short_description: paragraphs,
 
-    result.push(article);
-    console.log(index);
+        article_url: url,
+        article_image_src: imageUrl,
+        publishedAt: "2023-05-26T15:00:24Z",
+      };
 
-    await articlePage.close();
-  } // end of loop
+      result.push(article);
+      console.log(index);
+
+      await articlePage.close();
+    } // end of loop
 
   const jsonContent = JSON.stringify(result, null, 2);
   const outputFilePath = path.join(__dirname, `news24_${Date.now()}.json`);
 
-  fs.writeFile(outputFilePath, jsonContent, "utf8", (err) => {
-    if (err) {
-      console.error("Error writing JSON file:", err);
-    } else {
-      console.log("JSON file has been written successfully.");
-    }
-  });
-}
-
-async function scrapeTimeslive() {
-  const browser = await puppeteer.launch({ headless: true });
-  let result = [];
-  let uniqueUrl = new Set();
+    fs.writeFile(outputFilePath, jsonContent, "utf8", (err) => {
+      if (err) {
+        console.error("Error writing JSON file:", err);
+      } else {
+        console.log("JSON file has been written successfully.");
+      }
+    });
+  },
+  scrapeTimeslive: async () => {
+    const browser = await puppeteer.launch({ headless: true });
+    let result = [];
+    let uniqueUrl = new Set();
 
   const page = await browser.newPage();
   await page.goto("https://www.timeslive.co.za/news/south-africa/", {
@@ -154,9 +155,9 @@ async function scrapeTimeslive() {
     const elements = document.querySelectorAll("a.link");
     const uniqueSet = new Set();
 
-    elements.forEach((element) => {
-      uniqueSet.add(element.href);
-    });
+      elements.forEach((element) => {
+        uniqueSet.add(element.href);
+      });
 
     return Array.from(uniqueSet);
   });
