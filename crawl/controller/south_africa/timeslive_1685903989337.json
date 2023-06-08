@@ -5,6 +5,36 @@
       "url": "https://www.timeslive.co.za",
       "icon_url": "https://www.timeslive.co.za/static/images/icons/app-icons/app-icon.120x120.png"
     },
+    "title": "Suspect arrested in connection with murder of top cop’s son",
+    "short_description": [
+      "A 41-year-old man is expected to appear in the Bellville magistrate’s court on Monday after he was charged with the murder of Warren Rhoode, son of President Cyril Ramaphosa’s head of security Maj-Gen Wally Rhoode.",
+      "Rhoode Jr had been missing for about two weeks after going to visit a friend in Delft, Cape Town. His body was discovered on April 22."
+    ],
+    "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-04-suspect-arrested-in-connection-with-murder-of-top-cops-son/",
+    "article_image_src": "https://lh3.googleusercontent.com/2B1WxucVUi9g17RKMsqHR414PVLba8yZUUwzZXIgo2nn6vhFBheJUZvTzk_xSlVLijhK6rkvNy_7m5cBnut3YdLSCQ48QFL6ivdY=s533",
+    "publishedAt": "04 June 2023 - 19:45"
+  },
+  {
+    "source": {
+      "name": "timeslive",
+      "url": "https://www.timeslive.co.za",
+      "icon_url": "https://www.timeslive.co.za/static/images/icons/app-icons/app-icon.120x120.png"
+    },
+    "title": "Eskom executive linked to sabotage at power stations",
+    "short_description": [
+      "Police are looking to arrest an Eskom executive with top-secret security clearance who they believe may be central to engineering and staging breakdowns at targeted power stations.",
+      "City Press reported the executive, who has top-secret security clearance, is accused of appointing specific engineers to help ensure there are breakdowns at certain power stations. The engineers and the executive then profit from the money needed to fix the breakdowns."
+    ],
+    "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-04-eskom-executive-linked-to-sabotage-at-power-stations/",
+    "article_image_src": "https://lh3.googleusercontent.com/kP8MsfcOFrWhQpiwNA8Z6FRsywwrn8JZS42S-AJUUyaPWJ5r12x_5FiKD9sAXUKpcxt1u4WHjxDTNcuil31YuyoDw8eNLbPyhQ=s750",
+    "publishedAt": "04 June 2023 - 19:17"
+  },
+  {
+    "source": {
+      "name": "timeslive",
+      "url": "https://www.timeslive.co.za",
+      "icon_url": "https://www.timeslive.co.za/static/images/icons/app-icons/app-icon.120x120.png"
+    },
     "title": "Stage 2 load-shedding until 5am on Monday, then suspended",
     "short_description": [
       "Eskom said due to lower demand and improved available generation capacity, stage 2 load-shedding would be implemented from 4pm on Sunday until 5am on Monday.",
@@ -12,7 +42,7 @@
     ],
     "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-04-stage-2-load-shedding-until-5am-on-monday-then-suspended/",
     "article_image_src": "https://lh3.googleusercontent.com/hjYaxtldu3bamAF8Njvdg2eJWcqTHRWPd6cyX--YvogZiiNqFZevQyv8WMPP9md-ooHHdYJOpwwXLlcUuqpUd3lgxQCSsNRIdM8=s750",
-    "publishedAt": "04 June 2023 - 16:40  By TIMESLIVE"
+    "publishedAt": "04 June 2023 - 16:40"
   },
   {
     "source": {
@@ -27,7 +57,7 @@
     ],
     "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-04-power-outage-affects-water-supply-to-some-joburg-residents/",
     "article_image_src": "https://lh3.googleusercontent.com/tscDJDT-u270zc9ardTSDIlVYGneKIEseJe4SVIKmEI-9tkXjV5kU7-BlQUcHoe8ddo5BnRnNuPSvBwShd7Dz_5lR9yuMXiQH4U3aXui1NNaPg=s750",
-    "publishedAt": "04 June 2023 - 16:25  By TImesLIVE"
+    "publishedAt": "04 June 2023 - 16:25"
   },
   {
     "source": {
@@ -42,7 +72,7 @@
     ],
     "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-04-at-least-11-killed-in-crash-between-bus-and-minibus-taxi-in-eastern-cape/",
     "article_image_src": "https://lh3.googleusercontent.com/N8ku4rRoU_01PggkvUJDU5If2iPdieK3Uy93j3IylTRp5mw5LMvAYm9ay3dirgGfI9EfHGag9HHzB9CmaxBfeohflYDlrEI34pk=s750",
-    "publishedAt": "04 June 2023 - 16:04  By TIMES LIVE"
+    "publishedAt": "04 June 2023 - 16:04"
   },
   {
     "source": {
@@ -57,7 +87,7 @@
     ],
     "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-04-cape-town-transformer-thieves-tracked-down-in-darling/",
     "article_image_src": "https://lh3.googleusercontent.com/_Y9O2-FxJii8DoH4jFCV_bNIcjEBHsVRkmONuqyu8dfDVia4Fm4MpbNAioAcKL5fJiBA7CtJ0vGXXfAFr_Lw0o_qLqBpx_kvRQ=s750",
-    "publishedAt": "04 June 2023 - 15:51  By TImesLIVE"
+    "publishedAt": "04 June 2023 - 15:51"
   },
   {
     "source": {
@@ -177,7 +207,7 @@
     ],
     "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-04-municipal-payroll-administrators-ghost-employees-cost-him-six-year-sentence/",
     "article_image_src": "https://lh3.googleusercontent.com/X-rjawPRTzArtUywQbbhutmabijHp8IYF-ghz1UPgXu0G3YtS1NSr2T-gZHoLIXZgNtr2r48FUbMbytZs1ZEg74XCs9ds_t3qvs27OUrA3BOn1s=s750",
-    "publishedAt": "04 June 2023 - 10:46  By TIMESLIVE"
+    "publishedAt": "04 June 2023 - 10:46"
   },
   {
     "source": {
@@ -252,126 +282,6 @@
     ],
     "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-03-in-pics-hundreds-of-knit-for-madiba-blankets-on-display-at-joburg-school/",
     "article_image_src": "https://lh3.googleusercontent.com/cjpECD7c3cqzEN_48TuQxACOLMO-jaajwmyNOmanc4WCES7vxLdL5F4NNWXjvlvdHpeFm4mFWluR1xCVwXDph1_R6E7agZ6W5g=s750",
-    "publishedAt": "03 June 2023 - 17:59  By Thapelo Morebudi"
-  },
-  {
-    "source": {
-      "name": "timeslive",
-      "url": "https://www.timeslive.co.za",
-      "icon_url": "https://www.timeslive.co.za/static/images/icons/app-icons/app-icon.120x120.png"
-    },
-    "title": "KZN municipality payroll supervisor jailed for paying ghost workers R3.1m",
-    "short_description": [
-      "A former Newcastle municipality payroll supervisor has been sentenced to 10 years behind bars for doling out R3.1m to ghost workers.",
-      "The specialised commercial crimes court in Durban sentenced Dedre van Rooyen, 52, on Thursday."
-    ],
-    "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-03-kzn-municipality-payroll-supervisor-jailed-for-paying-ghost-workers-r31m/",
-    "article_image_src": "https://lh3.googleusercontent.com/M60EoCpftT9HCDijtCHDcBhdNTtKDqFwS3o18o8_bDNeduGtrjqNFWkYVFDallwmzlExutAHX7kKZYkDEbmgleaxyuIks9raEs8=s750",
-    "publishedAt": "03 June 2023 - 16:35"
-  },
-  {
-    "source": {
-      "name": "timeslive",
-      "url": "https://www.timeslive.co.za",
-      "icon_url": "https://www.timeslive.co.za/static/images/icons/app-icons/app-icon.120x120.png"
-    },
-    "title": "Ex-field rangers among 16 bust for 'laundering money from illegal rhino horn dealing'",
-    "short_description": [
-      "The Hawks have arrested 16 people, including two former field rangers, for allegedly laundering money linked to illegal rhino horn dealing in Mpumalanga.",
-      "Francis Kipampa, Martin Lekhuleni, Eunice Lekhuleni, Sipho Nyundu, Solly Ubisi, Agina Mkhonto, Thandy Makhuvele, Ignatia Mnisi, Given Mzima, Daniel Maluleke, Joyce Maluleke, Nkateko Maluleke, Otters Maluleke, Miyelani Maluleke, Khensani Maluleke and Stephilina Mbhombi appeared in the Mbombela (Nelspruit) commercial crimes court on Wednesday."
-    ],
-    "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-03-ex-field-rangers-among-16-bust-for-laundering-money-from-illegal-rhino-horn-dealing/",
-    "article_image_src": "https://lh3.googleusercontent.com/M5U1q_b9DOiekl96f6clLEAmnv4Fhr1KeDILW5YCm0zOBsgI5F_ZonzwYmrGj_Nhs2bpaDRsHbijVMsyEE1wVMxS0kPq9tbxAX9B=s750",
-    "publishedAt": "03 June 2023 - 14:48"
-  },
-  {
-    "source": {
-      "name": "timeslive",
-      "url": "https://www.timeslive.co.za",
-      "icon_url": "https://www.timeslive.co.za/static/images/icons/app-icons/app-icon.120x120.png"
-    },
-    "title": "Eskom has change of heart — stage 4 load-shedding to be implemented",
-    "short_description": [
-      "Just hours after announcing it was suspending load-shedding, Eskom announced it was implementing stage 4 from 4pm on Saturday until 5am on Sunday.",
-      "It gave no explanation for the change."
-    ],
-    "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-03-good-news-as-eskom-suspends-load-shedding/",
-    "article_image_src": "https://lh3.googleusercontent.com/hjYaxtldu3bamAF8Njvdg2eJWcqTHRWPd6cyX--YvogZiiNqFZevQyv8WMPP9md-ooHHdYJOpwwXLlcUuqpUd3lgxQCSsNRIdM8=s750",
-    "publishedAt": "03 June 2023 - 13:39  By TImesLIVE"
-  },
-  {
-    "source": {
-      "name": "timeslive",
-      "url": "https://www.timeslive.co.za",
-      "icon_url": "https://www.timeslive.co.za/static/images/icons/app-icons/app-icon.120x120.png"
-    },
-    "title": "Hawks swoop on municipal employee for 'theft of tender documents'",
-    "short_description": [
-      "A North West municipal employee has been arrested for allegedly stealing tender documents to thwart a Hawks investigation into his boss.",
-      "The 27-year-old man was hauled before the Atamelang magistrate's court on Friday on theft and defeating the ends of justice charges."
-    ],
-    "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-03-hawks-swoop-on-municipal-employee-for-theft-of-tender-documents/",
-    "article_image_src": "https://lh3.googleusercontent.com/aH19XCcj3OZ4bJqh1PXUOoZU4QrO55JQr96-ukCKJKOD43DjYucqlMzz0ifbj5T0b8bKaZkZ7pniU8T3nvy2=s750",
-    "publishedAt": "03 June 2023 - 13:34"
-  },
-  {
-    "source": {
-      "name": "timeslive",
-      "url": "https://www.timeslive.co.za",
-      "icon_url": "https://www.timeslive.co.za/static/images/icons/app-icons/app-icon.120x120.png"
-    },
-    "title": "Police killer and robber handed hefty sentence",
-    "short_description": [
-      "The high court has thrown the book at a police killer already serving a 25-year jail sentence for attempting to kill Johannesburg metro police department (JMPD) officers.",
-      "The high court in Johannesburg sentenced Akim Phathisani Masuku, 33, on Friday. Masuku faced charges ranging from murder to theft of firearms, house robbery and illegal possession of a firearm and ammunition."
-    ],
-    "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-03-police-killer-and-robber-handed-a-hefty-sentence/",
-    "article_image_src": "https://lh3.googleusercontent.com/g2oa6LZNuDWyk5b8RpdCayWSboETy1_YoL9yQWYuvh9pYctBd0aBPNT1Uvdde6kJiPznmbLkhOErlXh45atS3qYhq8a9C7o5_CHMdT2BgYjL3Q=s750",
-    "publishedAt": "03 June 2023 - 13:06"
-  },
-  {
-    "source": {
-      "name": "timeslive",
-      "url": "https://www.timeslive.co.za",
-      "icon_url": "https://www.timeslive.co.za/static/images/icons/app-icons/app-icon.120x120.png"
-    },
-    "title": "Seven dead in Glebelands Hostel shooting",
-    "short_description": [
-      "Seven men died in a shooting at the Glebelands Hostel in Durban on Saturday morning.",
-      "KwaZulu-Natal police said police at Umlazi have opened a docket “containing seven counts of murder and two attempted murders”  after a shooting incident that claimed seven lives at the hostel in the early hours."
-    ],
-    "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-03-seven-dead-in-glebelands-hostel-shooting/",
-    "article_image_src": "https://lh3.googleusercontent.com/W0zs8ekp2QdyHkF6Ur_owZlz8qVr5UejohyVGUhNYGEvGwF_oHuAxhR3EnPBH_BrcsryWuCdEq9OTBfxrDOFnBSrgjiN7TXUU4Q=s750",
-    "publishedAt": "03 June 2023 - 12:40"
-  },
-  {
-    "source": {
-      "name": "timeslive",
-      "url": "https://www.timeslive.co.za",
-      "icon_url": "https://www.timeslive.co.za/static/images/icons/app-icons/app-icon.120x120.png"
-    },
-    "title": "Rescue services searching for man swept out to sea during work outing in Gqeberha",
-    "short_description": [
-      "Rescue services in Gqeberha are pulling out all the stops to find a man who was swept out to sea by rip currents during a work outing on Friday.",
-      "Justin Erasmus, the National Sea Rescue Service Institute (NSRI) station commander in Gqeberha, said his team was alerted to a drowning incident at Maitland Beach at about 1.38pm on Friday."
-    ],
-    "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-03-rescue-services-searching-for-man-swept-out-to-sea-during-work-outing-in-gqeberha/",
-    "article_image_src": "https://lh3.googleusercontent.com/-T0WxNEDOKWYPyvvEOTW1HlqX3c-X5Rm_guLr8IEEf7j9MKf1BhxFmZpXoGhKZnCZQ_A6I22wj6RYrTHkelq7yrG2_wkLOTEGeFi=s750",
-    "publishedAt": "03 June 2023 - 11:46  By  PHILANI NOMBEMBE and Hendrik Hancke"
-  },
-  {
-    "source": {
-      "name": "timeslive",
-      "url": "https://www.timeslive.co.za",
-      "icon_url": "https://www.timeslive.co.za/static/images/icons/app-icons/app-icon.120x120.png"
-    },
-    "title": "International tourist arrivals at Cape Town airport back to pre-pandemic levels",
-    "short_description": [
-      "There are early signs international tourism in the Western Cape is making a full recovery.",
-      "This week, the Western Cape tourism, trade and investment promotion agency Wesgro announced that statistics for April show the proportion of foreign tourists at Cape Town International Airport “has achieved a full recovery compared to pre-pandemic levels in April 2019”."
-    ],
-    "article_url": "https://www.timeslive.co.za/news/south-africa/2023-06-03-international-tourist-arrivals-at-cape-town-airport-back-to-pre-pandemic-levels/",
-    "article_image_src": "https://lh3.googleusercontent.com/pHfcWPGxakY9qE_YZxrqeKfjgxvb_jBCQOoCycR1SgpZsy0T71I125ALtNLoESxur70l0CrB-FYXgUiuE3G7dy-Qf2xXIN4c_Nk=s750",
-    "publishedAt": "03 June 2023 - 10:17"
+    "publishedAt": "03 June 2023 - 17:59"
   }
 ]

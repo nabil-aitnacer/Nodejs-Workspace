@@ -5,13 +5,13 @@
       "url": "https://www.news24.com",
       "icon_url": "https://scripts.24.co.za/img/sites/news24.png"
     },
-    "title": "Court orders Gauteng health department to help teen terminate pregnancy",
+    "title": "Suspect arrested in connection with murder of Ramaphosa's head of security's son",
     "short_description": [
-      "",
-      "A Gauteng minor has succeeded in her attempt to have an abortion while more than 20 weeks pregnant – after she took the provincial health department to court with the help of public interest law centre, SECTION27."
+      "The police have arrested a 41-year-old suspect in connection with the murder of Warren Rhoode in Cape Town.",
+      "Rhoode, the son of President Cyril Ramaphosa's protection unit head Wally Rhoode, was found dead in May after he went missing."
     ],
-    "article_url": "https://www.news24.com/news24/southafrica/news/court-orders-gauteng-health-department-to-help-teen-terminate-pregnancy-20230604",
-    "article_image_src": "https://cdn.24.co.za/files/Cms/General/d/3951/9d0320ed0a01422e9cd8c431b67eea37.jpg",
+    "article_url": "https://www.news24.com/news24/southafrica/news/suspect-arrested-in-connection-with-murder-of-ramaphosas-head-of-securitys-son-20230604",
+    "article_image_src": "https://cdn.24.co.za/files/Cms/General/d/1915/f5209126db6345a5918fec59c0891218.jpeg",
     "publishedAt": "2023-05-26T15:00:24Z"
   },
   {
@@ -32,6 +32,21 @@
       "url": "https://www.news24.com",
       "icon_url": "https://scripts.24.co.za/img/sites/news24.png"
     },
+    "title": "Mass shooting: Glebelands death toll rises to 8 as Provincial Task Team detectives probe incident",
+    "short_description": [
+      "The death toll in the Glebelands Hostel mass shooting has risen to eight.",
+      "Provincial Task Team detectives are investigating the incident."
+    ],
+    "article_url": "https://www.news24.com/news24/southafrica/news/mass-shooting-glebelands-death-toll-rises-to-8-as-provincial-task-team-detectives-probe-incident-20230604",
+    "article_image_src": "https://cdn.24.co.za/files/Cms/General/d/8444/2b6f33d8cc314cb29ca8c4c9e40dc510.jpg",
+    "publishedAt": "2023-05-26T15:00:24Z"
+  },
+  {
+    "source": {
+      "name": "News24",
+      "url": "https://www.news24.com",
+      "icon_url": "https://scripts.24.co.za/img/sites/news24.png"
+    },
     "title": "Do you have any complaints or feedback about News24's content? Here's how to get in touch",
     "short_description": [
       "Seasoned journalist and academic Professor George Claassen is the public editor of News24.",
@@ -39,6 +54,36 @@
     ],
     "article_url": "https://www.news24.com/news24/southafrica/news/contact-news24s-public-editor-with-reader-complaints-20180212",
     "article_image_src": "https://cdn.24.co.za/files/Cms/General/d/9905/79bc9679c3a5418d802c84f06e7d9aa5.jpg",
+    "publishedAt": "2023-05-26T15:00:24Z"
+  },
+  {
+    "source": {
+      "name": "News24",
+      "url": "https://www.news24.com",
+      "icon_url": "https://scripts.24.co.za/img/sites/news24.png"
+    },
+    "title": "Former municipal official gets six years in jail for creating ghost workers and defrauding...",
+    "short_description": [
+      "A former Ndwedwe local municipality payroll administrator has been sentenced to six years imprisonment for creating ghost employees and using fictitious names to defraud the municipality.",
+      "Nkosingizwile Gama, 38, was employed by the municipality between 2015 and 2016."
+    ],
+    "article_url": "https://www.news24.com/news24/southafrica/news/former-municipal-official-gets-six-years-in-jail-for-creating-ghost-workers-and-defrauding-municipality-20230604",
+    "article_image_src": "https://cdn.24.co.za/files/Cms/General/d/7496/427b6c763cf347adacc06cd3a9103513.jpg",
+    "publishedAt": "2023-05-26T15:00:24Z"
+  },
+  {
+    "source": {
+      "name": "News24",
+      "url": "https://www.news24.com",
+      "icon_url": "https://scripts.24.co.za/img/sites/news24.png"
+    },
+    "title": "Court orders Gauteng health department to help teen terminate pregnancy",
+    "short_description": [
+      "",
+      "A Gauteng minor has succeeded in her attempt to have an abortion while more than 20 weeks pregnant – after she took the provincial health department to court with the help of public interest law centre, SECTION27."
+    ],
+    "article_url": "https://www.news24.com/news24/southafrica/news/court-orders-gauteng-health-department-to-help-teen-terminate-pregnancy-20230604",
+    "article_image_src": "https://cdn.24.co.za/files/Cms/General/d/3951/9d0320ed0a01422e9cd8c431b67eea37.jpg",
     "publishedAt": "2023-05-26T15:00:24Z"
   },
   {
@@ -69,6 +114,18 @@
     ],
     "article_url": "https://www.news24.com/news24/southafrica/news/murdered-lecturer-dedicated-his-life-to-the-historically-disadvantaged-says-mut-20230604",
     "article_image_src": "https://cdn.24.co.za/files/Cms/General/d/2980/161f8cc1303243b499c440375b4fe9f2.jpg",
+    "publishedAt": "2023-05-26T15:00:24Z"
+  },
+  {
+    "source": {
+      "name": "News24",
+      "url": "https://www.news24.com",
+      "icon_url": "https://scripts.24.co.za/img/sites/news24.png"
+    },
+    "title": "DEVELOPING | #LadyRussiagate: Could Ramaphosa's peace mission to Ukraine be his saving grace if...",
+    "short_description": [],
+    "article_url": "https://www.news24.com/news24/southafrica/news/live-ramaphosa-responds-to-us-ambassadors-claims-that-south-africa-supplied-russia-with-ammunition-20230511",
+    "article_image_src": "https://cf-images.us-east-1.prod.boltdns.net/v1/static/6146357338001/a8469a58-7b4a-440e-b4d1-3b18c6e8c23e/2ced5a87-0a70-4053-9d9a-e4dd6c5e3749/640x360/match/image.jpg",
     "publishedAt": "2023-05-26T15:00:24Z"
   },
   {
@@ -129,18 +186,6 @@
     ],
     "article_url": "https://www.news24.com/news24/southafrica/news/university-of-fort-hare-to-challenge-mabuyanes-bid-to-declare-investigation-into-his-degree-invalid-20230604",
     "article_image_src": "https://cdn.24.co.za/files/Cms/General/d/2336/1a48eec3207544f2a1bf00ee8fe27637.jpg",
-    "publishedAt": "2023-05-26T15:00:24Z"
-  },
-  {
-    "source": {
-      "name": "News24",
-      "url": "https://www.news24.com",
-      "icon_url": "https://scripts.24.co.za/img/sites/news24.png"
-    },
-    "title": "DEVELOPING | #LadyRussiagate: Could Ramaphosa's peace mission to Ukraine be his saving grace if...",
-    "short_description": [],
-    "article_url": "https://www.news24.com/news24/southafrica/news/live-ramaphosa-responds-to-us-ambassadors-claims-that-south-africa-supplied-russia-with-ammunition-20230511",
-    "article_image_src": "https://cf-images.us-east-1.prod.boltdns.net/v1/static/6146357338001/a8469a58-7b4a-440e-b4d1-3b18c6e8c23e/2ced5a87-0a70-4053-9d9a-e4dd6c5e3749/640x360/match/image.jpg",
     "publishedAt": "2023-05-26T15:00:24Z"
   },
   {
@@ -216,51 +261,6 @@
     ],
     "article_url": "https://www.news24.com/news24/southafrica/news/life-behind-bars-for-cop-killer-who-committed-a-string-of-other-crimes-20230603",
     "article_image_src": "https://cdn.24.co.za/files/Cms/General/d/353/fedfa81e8b054a9aae403de975142a8b.jpg",
-    "publishedAt": "2023-05-26T15:00:24Z"
-  },
-  {
-    "source": {
-      "name": "News24",
-      "url": "https://www.news24.com",
-      "icon_url": "https://scripts.24.co.za/img/sites/news24.png"
-    },
-    "title": "Amabhungane blocked from reporting on #MotiLeaks for now - but will not have to hand docs over yet",
-    "short_description": [
-      "The Moti Group has defended its\nlitigation against investigative journalism body amaBhungane to prevent any\nfurther publishing in its #MotiFiles series.",
-      "In a statement released on\nSaturday, the group said it recently sought and obtained an interim\ninterdict prohibiting amaBhungane from publishing any articles based on\ndocuments allegedly stolen by former employee Clinton van Niekerk."
-    ],
-    "article_url": "https://www.news24.com/news24/southafrica/news/just-in-amabhungane-blocked-from-reporting-on-motileaks-for-now-but-wont-have-to-hand-docs-over-yet-20230603",
-    "article_image_src": "https://cdn.24.co.za/files/Cms/General/d/1051/432d07eb6b9540f3bd73ac3491f7a030.jpg",
-    "publishedAt": "2023-05-26T15:00:24Z"
-  },
-  {
-    "source": {
-      "name": "News24",
-      "url": "https://www.news24.com",
-      "icon_url": "https://scripts.24.co.za/img/sites/news24.png"
-    },
-    "title": "Former DA member and speaker of Knysna municipality joins ActionSA",
-    "short_description": [
-      "ActionSA welcomes another former DA member, with the party announcing the former council speaker of Knysna municipality, Julie Lopes, as a member.",
-      "Lopes left the DA on 2 June after resigning as a PR councillor. Party leader Herman Mashaba announced Lopes's arrival to the party on Saturday at Ennerdale Primary School."
-    ],
-    "article_url": "https://www.news24.com/news24/politics/political-parties/former-da-member-and-speaker-of-knysna-municipality-joins-actionsa-20230603",
-    "article_image_src": "https://cdn.24.co.za/files/Cms/General/d/1401/cf873697b95a4a70b1650332eb5f2b16.jpg",
-    "publishedAt": "2023-05-26T15:00:24Z"
-  },
-  {
-    "source": {
-      "name": "News24",
-      "url": "https://www.news24.com",
-      "icon_url": "https://scripts.24.co.za/img/sites/news24.png"
-    },
-    "title": "WATCH | Eswatini Air touches down in Cape Town, offering three flights a week in the city",
-    "short_description": [
-      "Recently launched Eswatini Air has added Cape Town to its list of South African destinations after already landing in Johannesburg and Durban earlier this year.",
-      "Eswatini Air, the newest flag carrier of the small, landlocked Southern African country, completed its inaugural flight from King Mswati III International Airport to Cape Town on Friday afternoon, marking its third destination since launching at the end of March 2023."
-    ],
-    "article_url": "https://www.news24.com/news24/video/southafrica/news/watch-eswatini-air-touches-down-in-cape-town-offering-three-flights-a-week-in-the-city-20230603",
-    "article_image_src": "https://cf-images.us-east-1.prod.boltdns.net/v1/static/6146357338001/cbc48662-f10b-4374-8bc9-cc4d222b5348/b91f6181-37e9-43c7-b07d-25ab81ccd226/640x360/match/image.jpg",
     "publishedAt": "2023-05-26T15:00:24Z"
   }
 ]

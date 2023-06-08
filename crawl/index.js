@@ -21,4 +21,9 @@ const Mongo_db_Url = "mongodb+srv://root-db:CDD8i9he5yJeMCfE@cluster0.ihpy6fx.mo
 //     .catch((error) => {
 //       console.error("Error saving source:", error);
 //     });
-sa_controller.scrapeTimeslive(); 
+
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+sa_controller.saCrawl(); 
