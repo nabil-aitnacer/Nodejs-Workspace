@@ -89,4 +89,22 @@ describe('GET /todos/:id', () => {
     .expect(404)
     .end(done);
 });
+
+});
+describe('dDELETE /todos/:id', () => {
+  it('should delete  todo doc', (done) => {
+        request(app)
+        .get(`/todos/${todos[0]._id.toHexString()}`)
+        .expect((res) => {
+              expect(res.body.todo.text).toBe(todos[0].text);
+        })
+        .end(done);
+  });
+  it('should return 404  todo NOT FOUND', (done) => {
+    request(app)
+    .get('/todos/sa123')
+    .expect(404)
+    .end(done);
+})
+
 });

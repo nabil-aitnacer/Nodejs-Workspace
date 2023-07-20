@@ -1,0 +1,1 @@
+The beforeEach method is going to let us run some code before every single test case
