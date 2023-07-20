@@ -1,15 +1,22 @@
 const expect = require('expect');
 const request = require('supertest');
+const mongoose = require('mongoose')
+
 
 const {app} = require('./../server');
 const {Todo} = require('./../db/models/todo');
 
-const todos = [{
-   text: 'First test todo'
-},{
-   text: 'Second test todo'
-}];
 
+const todos = [
+  {
+    _id: new mongoose.Types.ObjectId(),
+    text: 'First test todo'
+  },
+  {
+    _id: new mongoose.Types.ObjectId(),
+    text: 'Second test todo'
+  }
+];
 beforeEach((done) =>{
   Todo.deleteMany({}).then(() => {
     return Todo.insertMany(todos);
@@ -64,6 +71,22 @@ describe('GET /todos',()=>{
     }).end(done)
     
   })
+
 })
 
-
+describe('GET /todos/:id', () => {
+  it('should return todo doc', (done) => {
+        request(app)
+        .get(`/todos/${todos[0]._id.toHexString()}`)
+        .expect((res) => {
+              expect(res.body.todo.text).toBe(todos[0].text);
+        })
+        .end(done);
+  });
+  it('should return 404  todo NOT FOUND', (done) => {
+    request(app)
+    .get('/todos/sa123')
+    .expect(404)
+    .end(done);
+});
+});
