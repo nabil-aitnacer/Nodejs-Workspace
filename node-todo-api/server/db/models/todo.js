@@ -10,7 +10,7 @@ const Todo = mongoose.model('Todo',{
         type:Boolean
     },
     completedAt:{
-        type:Number
+        type:Date
     }
 })
 

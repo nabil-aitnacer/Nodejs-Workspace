@@ -92,7 +92,7 @@ describe('GET /todos/:id', () => {
 
 });
 describe('dDELETE /todos/:id', () => {
-  it('should delete  todo doc', (done) => {
+  it('should remove a  todo doc', (done) => {
         request(app)
         .get(`/todos/${todos[0]._id.toHexString()}`)
         .expect((res) => {
