@@ -9,7 +9,16 @@ const io = new Server(server);
 app.use(express.static(path.join(__dirname,'../','public')))
 io.on('connection', (socket) => {
   console.log('a user connected');
+  socket.emit('newMessage',{
+    from:"Nabil",
+    text:"Hello World",
+  createdAt:"123456"
+  })
+  socket.on('createMessage',function(message){
+    console.log('Create Message',message)
+  })
 });
+
 
 server.listen(3000, () => {
   console.log('listening on *:3000');
