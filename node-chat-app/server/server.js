@@ -11,8 +11,8 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 
   socket.on('createMessage',function(message){
-    console.log('Create Message',message)
-    socket.emit('newMessage',{
+    
+    io.emit('newMessage',{
       from: message.from,
       text : message.text,
       createdAt : new Date().getDate()
