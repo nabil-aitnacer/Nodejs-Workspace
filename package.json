@@ -32,6 +32,7 @@
     "log-symbols": "^3.0.0",
     "mimic-fn": "^2.1.0",
     "mute-stream": "^0.0.8",
+    "nodemon": "^3.0.1",
     "onetime": "^5.1.2",
     "ora": "^4.1.1",
     "os-tmpdir": "^1.0.2",
